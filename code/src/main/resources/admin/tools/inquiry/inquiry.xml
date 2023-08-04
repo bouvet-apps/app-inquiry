@@ -1,0 +1,7 @@
+<tool>
+  <display-name i18n="tool.name">Inquiry App</display-name>
+  <description i18n="tool.description">View the results of your inquiries</description>
+  <allow>
+      <principal>role:system.admin</principal>
+  </allow>
+</tool>
