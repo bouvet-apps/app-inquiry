@@ -45,6 +45,10 @@ sourceSets {
     }
 }
 
+tasks.named("jar") {
+    dependsOn(":npmBuild")
+}
+
 task packageApplication {
     dependsOn(':build')
     group 'application'
