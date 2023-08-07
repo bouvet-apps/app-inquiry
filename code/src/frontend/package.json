@@ -10,7 +10,6 @@
   "license": "Apache 2.0",
   "author": "Bouvet",
   "scripts": {
-    "clean": "rimraf ../../build/resources/main/assets",
     "lint": "eslint --resolve-plugins-relative-to ../../.eslintrc.json --ext=js --ext=es6 --ext=vue",
     "build": "npm-run-all build:*",
     "build:js": "webpack --config webpack.prod.config.js",
@@ -46,7 +45,6 @@
     "npm-run-all": "4.1.5",
     "postcss-loader": "7.0.0",
     "resolve-url-loader": "5.0.0",
-    "rimraf": "3.0.2",
     "sass": "1.52.2",
     "sass-loader": "13.0.0",
     "style-loader": "3.3.1",

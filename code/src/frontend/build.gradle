@@ -44,13 +44,6 @@ task npmLint(
     args = ['run', 'lint']
 }
 
-task clean(type: NpmTask,
-        group: 'node',
-        description: 'Clean frontend project'
-    ) {
-    args = ['run', 'clean']
-}
-
 repositories {
     mavenLocal()
     mavenCentral()

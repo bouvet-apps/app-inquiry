@@ -104,7 +104,6 @@ clean: ## Delete generated files
 	@cd $(CODE_DIR) && ./gradlew clean
 	-rm -rf $(STAMPS_DIR)
 	-rm -rf $(CODE_DIR)/node_modules
-	-rm -rf $(CODE_DIR)/build/private-libs
 	-rm -rf $(FRONTEND_DIR)/node_modules
 
 $(STAMPS_DIR):
