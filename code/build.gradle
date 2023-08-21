@@ -2,7 +2,7 @@ plugins {
     id 'java'
     id 'maven-publish'
     id 'com.enonic.xp.app' version '3.4.0'
-    id "com.github.node-gradle.node" version "5.0.0"
+    id "com.github.node-gradle.node" version "7.0.0"
     id 'org.ajoberstar.grgit' version '4.1.1'
     id "com.github.ben-manes.versions" version '0.47.0'
 }
@@ -175,7 +175,7 @@ dependencies {
     include "com.enonic.xp:testing:${xpVersion}"
     include "com.enonic.xp:lib-repo:${xpVersion}"
     include "com.enonic.xp:lib-node:${xpVersion}"
-    include 'com.github.tineikt:xp-lib-freemarker:2.0.2'
+    include 'com.github.tineikt:xp-lib-freemarker:2.0.3'
 }
 
 repositories {
@@ -187,10 +187,10 @@ repositories {
 
 node {
     // Version of node to use.
-    version = '16.15.1'
+    version = '18.17.1'
 
     // Version of npm to use.
-    npmVersion = '8.11.0'
+    npmVersion = '9.8.1'
 
     // If true, it will download node using above parameters.
     // If false, it will try to use globally installed node.
@@ -198,6 +198,6 @@ node {
 }
 
 wrapper {
-    gradleVersion = '7.3.1'
+    gradleVersion = '8.3'
     distributionType = Wrapper.DistributionType.BIN
 }
