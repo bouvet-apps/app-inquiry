@@ -9,7 +9,7 @@ You can install the app from the [Enonic Market](https://market.enonic.com), add
 
 ### Build it yourself
 
-If you wish to build it yourself, you can run the `make package` command to build and package the application. This will create a JAR file in the `/deploy` folder which you can use to install the app.
+If you wish to build it yourself, you can run the `make package` command in the main directory to build and package the application. This will create a JAR file in the `/deploy` folder which you can use to install the app.
 
 ## Notes
 
