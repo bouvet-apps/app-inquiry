@@ -37,6 +37,8 @@
       <config>
         <option value="light" i18n="site.theme.light">Light theme</option>
         <option value="dark" i18n="site.theme.dark">Dark theme</option>
+        <option value="light-minimal" i18n="site.theme.light-minimal">Light minimal theme</option>
+        <option value="dark-minimal" i18n="site.theme.dark-minimal">Dark minimal theme</option>
       </config>
       <default>light</default>
     </input>
