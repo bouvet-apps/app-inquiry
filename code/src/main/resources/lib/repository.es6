@@ -1,5 +1,4 @@
 const libs = {
-  context: require("/lib/xp/context"),
   node: require("/lib/xp/node"),
   repo: require("/lib/xp/repo"),
   util: require("/lib/util")
@@ -17,10 +16,6 @@ const {
     NAME
   }
 } = require("/lib/enums");
-
-exports.runAsAdmin = (callback) => libs.context.run({
-  principals: ["role:system.admin"]
-}, callback);
 
 exports.checkRepo = () => {
   // Check if there is already a repo and parent path, if not create them
