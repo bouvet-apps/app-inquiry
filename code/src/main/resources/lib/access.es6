@@ -1,11 +1,11 @@
 const libs = {
-  authLib: require("/lib/xp/auth"),
+  auth: require("/lib/xp/auth"),
   util: require("/lib/util")
 };
 
 exports.createRole = () => {
   try {
-    libs.util.runAsAdmin(() => libs.authLib.createRole({
+    libs.util.runAsAdmin(() => libs.auth.createRole({
       name: "inquiry.tool.admin",
       displayName: "Inquiry App Access",
       description: "This role gives access to the Inquiry App admin tool."
