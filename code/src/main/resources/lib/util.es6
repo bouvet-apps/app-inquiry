@@ -1,3 +1,11 @@
+const libs = {
+  context: require("/lib/xp/context")
+};
+
+exports.runAsAdmin = (callback) => libs.context.run({
+  principals: ["role:system.admin"]
+}, callback);
+
 exports.forceArray = (object) => {
   if (!object || (typeof object === "object" && !Object.keys(object).length)) {
     return [];
