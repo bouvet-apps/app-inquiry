@@ -57,15 +57,12 @@
       </config>
     </input>
     <field-set name="box">
-      <label i18n="site.box">CTA Box</label>
-      <help-text i18n="site.box-help">
-        This is the initial inquiry box where a user can choose to proceed to the inquiry form. The box will be displayed on the website.
-      </help-text>
+      <label i18n="site.box">Inquiry box</label>
       <items>
         <input name="boxTitle" type="TextLine">
           <label i18n="site.boxTitle">Title</label>
           <help-text i18n="site.boxTitle-help">
-            Add a title to the inquiry box. For example: Let us know what you think!
+            Add a title to the initial inquiry box where a user can choose to proceed to the inquiry form. For example: Let us know what you think!
           </help-text>
           <occurrences minimum="0" maximum="1" />
         </input>
@@ -77,15 +74,15 @@
           <occurrences minimum="0" maximum="1" />
         </input>
         <input name="boxContinue" type="TextLine">
-          <label i18n="site.boxContinue">Button</label>
-          <help-text>
-            This is the button a user will click if they want to fill out the inquiry form. Add a fitting text to the button.
+          <label i18n="site.boxContinue">Button text</label>
+          <help-text i18n="site.boxContinue-help">
+            This is the button a user will click if they want to continue to the inquiry form. Add a fitting text to the button.
           </help-text>
           <occurrences minimum="0" maximum="1" />
         </input>
         <input name="boxPosition" type="RadioButton">
           <label i18n="site.boxPosition">Position of box on screen</label>
-          <help-text>
+          <help-text i18n="site.boxPosition-help">
             Decide where on the webpage the info box should be displayed.
           </help-text>
           <occurrences minimum="1" maximum="1"/>
@@ -109,42 +106,39 @@
       </items>
     </field-set>
     <field-set name="popup">
-      <label i18n="site.popup">Popup</label>
-      <help-text>
-        This is the popup box that will be displayed if a user decides they want to fill out the inquiry form. The entirety of the form will be displayed within this popup box.
-      </help-text>
+      <label i18n="site.popup">Popup form</label>
       <items>
         <input name="popupTitle" type="TextLine">
           <label i18n="site.popupTitle">Title</label>
-          <help-text>
-            Add a title above the inquiry form
+          <help-text i18n="site.popupTitle-help">
+            Add a title to the inquiry form.
           </help-text>
           <occurrences minimum="0" maximum="1" />
         </input>
         <input name="popupText" type="HtmlArea">
           <label i18n="site.popupText">Text</label>
-          <help-text>
-            Add a describing info text above the inquiry form
+          <help-text i18n="site.popupText-help">
+            Add a describing info text about the inquiry form. The text is displayed below the title.
           </help-text>
           <occurrences minimum="0" maximum="1" />
         </input>
         <input name="popupSubmit" type="TextLine">
-          <label i18n="site.popupSubmit">Button</label>
-          <help-text>
+          <label i18n="site.popupSubmit">Button text</label>
+          <help-text i18n="site.popupSubmit-help">
             This is the button a user will click when they have completed the inquiry form and want to submit their reply. Add a fitting text to the button, for example: submit.
           </help-text>
           <occurrences minimum="0" maximum="1" />
         </input>
         <input name="popupResponseTitle" type="TextLine">
           <label i18n="site.popupResponseTitle">Title after form submitted</label>
-          <help-text>
+          <help-text i18n="site.popupResponseTitle-help">
             Add a title to display after the user has submitted their response. For example: Thank you for your reply.
           </help-text>
           <occurrences minimum="0" maximum="1" />
         </input>
         <input name="popupResponseText" type="HtmlArea">
           <label i18n="site.popupResponseText">Text after form submitted</label>
-          <help-text>
+          <help-text i18n="site.popupResponseText-help">
             Add some text to display after the user has submitted their response.
           </help-text>
           <occurrences minimum="0" maximum="1" />
@@ -167,7 +161,9 @@
               <items>
                 <input name="question" type="TextLine">
                   <label i18n="site.question">Question</label>
-                  <help-text>Add a short question you want the user to answer</help-text>
+                  <help-text i18n="site.questionShort-help">
+                    Add a question that that requires a short answer, no more than one line.
+                  </help-text>
                   <occurrences minimum="1" maximum="1"/>
                 </input>
                 <input name="id" type="CustomSelector">
@@ -182,7 +178,7 @@
                 </input>
                 <input name="required" type="CheckBox">
                   <label i18n="site.required">Answer required</label>
-                  <help-text>
+                  <help-text i18n="site.required-help">
                     Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered.
                   </help-text>
                 </input>
@@ -197,7 +193,9 @@
               <items>
                 <input name="question" type="TextLine">
                   <label i18n="site.question">Question</label>
-                  <help-text>Add a longer question that you want the user to answer</help-text>
+                  <help-text i18n="site.questionLong-help">
+                    Add a question that that requires a longer answer, multiple lines.
+                  </help-text>
                   <occurrences minimum="1" maximum="1"/>
                 </input>
                 <input name="id" type="CustomSelector">
@@ -212,7 +210,7 @@
                 </input>
                 <input name="required" type="CheckBox">
                   <label i18n="site.required">Answer required</label>
-                  <help-text>
+                  <help-text i18n="site.required-help">
                     Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered.
                   </help-text>
                 </input>
@@ -227,7 +225,9 @@
               <items>
                 <input name="question" type="TextLine">
                   <label i18n="site.question">Question</label>
-                  <help-text>Add a multiple choice question that you want the user to answer. The user can choose only one answer.</help-text>
+                  <help-text i18n="site.questionRadio-help">
+                    Add a multiple choice question that you want the user to answer. The user can select only one answer.
+                  </help-text>
                   <occurrences minimum="0" maximum="1"/>
                 </input>
                 <input name="id" type="CustomSelector">
@@ -242,7 +242,7 @@
                 </input>
                 <input name="required" type="CheckBox">
                   <label i18n="site.required">Answer required</label>
-                  <help-text>
+                  <help-text i18n="site.required-help">
                     Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered.
                   </help-text>
                 </input>
@@ -266,7 +266,9 @@
               <items>
                 <input name="question" type="TextLine">
                   <label i18n="site.question">Question</label>
-                  <help-text>Add a multiple choice question that you want the user to answer. The user can check multiple answers.</help-text>
+                  <help-text i18n="site.questionCheckbox-help">
+                    Add a multiple choice question that you want the user to answer. The user can select multiple answers.
+                  </help-text>
                   <occurrences minimum="0" maximum="1"/>
                 </input>
                 <input name="id" type="CustomSelector">
@@ -281,7 +283,7 @@
                 </input>
                 <input name="required" type="CheckBox">
                   <label i18n="site.required">Answer required</label>
-                  <help-text>
+                  <help-text i18n="site.required-help">
                     Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered.
                   </help-text>
                 </input>

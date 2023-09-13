@@ -42,7 +42,6 @@ $(STAMPS_DIR)/prepare.stamp: Makefile .git/hooks | $(STAMPS_DIR)
 	## Check that git, gradle, java, node, enonic cli, etc --> sdkman
 	## Install git hooks
 	$(call check_external,git)
-	$(call check_external,gradle)
 	$(call check_external,java)
 	$(call check_external,node)
 	$(call check_external,enonic)
