@@ -38,6 +38,7 @@ task npmLint(
 repositories {
     mavenLocal()
     mavenCentral()
+    maven { url 'https://jitpack.io' }
 }
 
 node {
