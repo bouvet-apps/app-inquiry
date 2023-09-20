@@ -42,9 +42,9 @@ repositories {
 
 node {
     // Version of node to use.
-    version = '16.15.1'
+    version = '18.17.1'
 
     // Version of npm to use.
-    npmVersion = '8.11.0'
+    npmVersion = '9.8.1'
     download = true
 }

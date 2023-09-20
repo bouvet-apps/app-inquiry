@@ -10,12 +10,6 @@
         Activate to display the inquiry box on your website. When a visitor closes the inquiry box or submits the inquiry form, their browser will remember this and prevent it from displaying again unless the identifier has changed in the mean time.
       </help-text>
     </input>
-    <input name="testmode" type="CheckBox">
-      <label i18n="site.testmode">Enable test mode</label>
-      <help-text i18n="site.testmode-help">
-        Enable if you want to always show the inquiry box on every page load, even if you have closed or submitted the inquiry before. Only works in preview/edit mode. When you're testing the form, don't forget to delete your test replies via the Inquiry admin tool before activating it on the master branch.
-      </help-text>
-    </input>
     <input name="identifier" type="TextLine">
       <label i18n="site.identifier">Identifier</label>
       <help-text i18n="site.identifier-help">
@@ -41,17 +35,6 @@
         <option value="dark-minimal" i18n="site.theme.dark-minimal">Dark minimal theme</option>
       </config>
       <default>light</default>
-    </input>
-    <input name="fontSize" type="Long">
-      <label i18n="site.fontSize">Base font-size (px)</label>
-      <help-text i18n="site.fontSize-help">
-        By default the font-size will be inherited from the body. Use this field to set a base font-size manually if needed (enter value between 1 and 30).
-      </help-text>
-      <occurrences minimum="0" maximum="1" />
-      <config>
-        <min>1</min>
-        <max>30</max>
-      </config>
     </input>
     <field-set name="box">
       <label i18n="site.box">Box</label>
@@ -79,15 +62,6 @@
           </config>
           <default>bottomRight</default>
         </input>
-        <input name="boxZindex" type="Long">
-          <label i18n="site.zindex">Z-index</label>
-          <help-text i18n="site.zindex-help">
-            Manually set the z-index value here if you need to. By default a z-index value of 99999 will be used. Only use this field if you need to fix issues with other overlapping elements on your site. The element with highest z-index is displayed on top.
-          </help-text>
-          <config>
-            <max>999999999</max>
-          </config>
-        </input>
       </items>
     </field-set>
     <field-set name="popup">
@@ -112,15 +86,6 @@
         <input name="popupResponseText" type="HtmlArea">
           <label i18n="site.popupResponseText">Text after form submitted</label>
           <occurrences minimum="0" maximum="1" />
-        </input>
-        <input name="popupZindex" type="Long">
-          <label i18n="site.zindex">Z-index</label>
-          <help-text i18n="site.zindex-help">
-            Manually set the z-index value here if you need to. By default a z-index value of 99999 will be used. Only use this field if you need to fix issues with other overlapping elements on your site. The element with highest z-index is displayed on top.
-          </help-text>
-          <config>
-            <max>999999999</max>
-          </config>
         </input>
         <option-set name="popupQuestions">
           <label i18n="site.popupQuestions">Questions</label>
@@ -250,6 +215,46 @@
             </option>
           </options>
         </option-set>
+      </items>
+    </field-set>
+    <field-set>
+      <label>Advanced settings</label>
+      <items>
+        <input name="testmode" type="CheckBox">
+          <label i18n="site.testmode">Enable test mode</label>
+          <help-text i18n="site.testmode-help">
+            Enable if you want to always show the inquiry box on every page load, even if you have closed or submitted the inquiry before. Only works in preview/edit mode. When you're testing the form, don't forget to delete your test replies via the Inquiry admin tool before activating it on the master branch.
+          </help-text>
+        </input>
+        <input name="fontSize" type="Long">
+          <label i18n="site.fontSize">Base font-size (px)</label>
+          <help-text i18n="site.fontSize-help">
+            By default the font-size will be inherited from the body. Use this field to set a base font-size manually if needed (enter value between 1 and 30).
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+          <config>
+            <min>1</min>
+            <max>30</max>
+          </config>
+        </input>
+        <input name="popupZindex" type="Long">
+          <label i18n="site.zindex.popup">Z-index</label>
+          <help-text i18n="site.zindex-help">
+            Manually set the z-index value here if you need to. By default a z-index value of 99999 will be used. Only use this field if you need to fix issues with other overlapping elements on your site. The element with highest z-index is displayed on top.
+          </help-text>
+          <config>
+            <max>999999999</max>
+          </config>
+        </input>
+        <input name="boxZindex" type="Long">
+          <label i18n="site.zindex.box">Z-index</label>
+          <help-text i18n="site.zindex-help">
+            Manually set the z-index value here if you need to. By default a z-index value of 99999 will be used. Only use this field if you need to fix issues with other overlapping elements on your site. The element with highest z-index is displayed on top.
+          </help-text>
+          <config>
+            <max>999999999</max>
+          </config>
+        </input>
       </items>
     </field-set>
   </form>
