@@ -38,14 +38,13 @@ task npmLint(
 repositories {
     mavenLocal()
     mavenCentral()
-    maven { url 'https://jitpack.io' }
 }
 
 node {
     // Version of node to use.
-    version = '18.17.1'
+    version = '16.15.1'
 
     // Version of npm to use.
-    npmVersion = '9.8.1'
+    npmVersion = '8.11.0'
     download = true
 }
