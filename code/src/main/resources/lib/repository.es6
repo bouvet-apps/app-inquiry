@@ -70,7 +70,7 @@ exports.saveInquiry = (identifier, questions) => {
 
   return repoConn.modify({
     key: `${PATH}/${identifier}`,
-    editor: function (x) {
+    editor: function(x) {
       const editNode = x;
       editNode.questions = questions;
       return editNode;
