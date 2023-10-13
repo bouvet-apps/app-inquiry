@@ -67,7 +67,7 @@
         "no-tabs": "error",
         "no-template-curly-in-string": "error",
         "no-trailing-spaces": "error",
-        "no-undef": "off",
+        "no-undef": "error",
         "no-underscore-dangle": "off",
         "no-unreachable": "error",
         "no-use-before-define": "error",
@@ -109,5 +109,17 @@
         ],
         "use-isnan": "error",
         "valid-typeof": "error"
+    },
+    "globals": {
+        "require": true,
+        "log": true,
+        "exports": true,
+        "resolve": true,
+        "app": true,
+        "fetch": true,
+        "document": true,
+        "window": true,
+        "__": true,
+        "Java": true
     }
 }
