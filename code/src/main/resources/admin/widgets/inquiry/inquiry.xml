@@ -1,0 +1,7 @@
+<widget>
+    <display-name>Inquiry Widget</display-name>
+    <description>Inquiry</description>
+    <interfaces>
+        <interface>contentstudio.contextpanel</interface>
+    </interfaces>
+</widget>
