@@ -70,6 +70,28 @@ exports.get = (req) => {
     };
   }
 
+  // Show Inquiry request
+  if (req.params.id && req.params.action === "fetchByID") {
+    const body = {};
+    const inquiry = libs.repository.getInquiry(req.params.id);
+
+    log.info("msg: %s", JSON.stringify(req.params.id, null, 4));
+    log.info("msg: %s", JSON.stringify(inquiry, null, 4));
+
+    if (inquiry) {
+      // libs.repository.deleteInquiry(inquiry._name);
+      log.info("msg: %s", JSON.stringify(inquiry, null, 4));
+      body.status = "OK";
+    } else {
+      body.status = "INQUIRY NOT FOUND";
+    }
+
+    return {
+      contentType: "application/json",
+      body: body
+    };
+  }
+
   // Get results request
   const allInquiries = libs.util.forceArray(libs.repository.getInquiries());
   const inquiryList = [];

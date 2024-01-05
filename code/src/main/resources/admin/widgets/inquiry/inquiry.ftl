@@ -81,7 +81,7 @@
                 resizeObserver.observe(document.getElementById("chart${chartItem?counter}"));
                 </#list>
 
-        }, "3000")
+        }, "300")
     </script>
     <link rel="stylesheet" href="${urlCss}">
     <aside class="inquiry-widget">
@@ -90,21 +90,24 @@
             <#if (inquiryList?size == 0)>
                 <div class="no-data"><@localize locale="${locale}" key="tool.noData" /></div>
             <#else>
-                <table>
+                <ul>
                     <#list inquiryList as inquiry>
                         <#assign activeClass = inquiry.displayed?then('class="active"', '')>
-                        <tr>
-                            <td>
-                                <a href="${urlPage}?id=${inquiry.id}" ${activeClass} onclick="showloader()" title="<@localize locale="${locale}" key="tool.showRepliesFor" /> ${inquiry.name}">${inquiry.name}</a>
-                                <span class="replies">${inquiry.count?c} <@localize locale="${locale}" key="tool.replies" /></span>
-                            </td>
-                            <td style="text-align:right;">
-                                <button type="button" onclick="downloadExcelFile('${inquiry.name}', '${inquiry.id}')" title="<@localize locale="${locale}" key="tool.excelTitle" />" class="green">EXCEL</button>
-                                <button type="button" onclick="deleteData('${inquiry.name}', '${inquiry.id}')" title="<@localize locale="${locale}" key="tool.deleteTitle" />" class="red">X</button>
-                            </td>
-                        </tr>
+                        <li>
+                            <div class="list-item">
+                                <div>
+                                    <p style="cursor: pointer" onclick="showInquiry('${inquiry.id}')" title="<@localize locale="${locale}" key="tool.showRepliesFor" /> ${inquiry.name}">${inquiry.name}</p>
+                                    <span class="replies">${inquiry.count?c} <@localize locale="${locale}" key="tool.replies" /></span>
+                                </div>
+                                <div style="text-align:right;">
+                                    <button type="button" onclick="downloadExcelFile('${inquiry.name}', '${inquiry.id}')" title="<@localize locale="${locale}" key="tool.excelTitle" />" class="green">EXCEL</button>
+                                    <button type="button" onclick="deleteData('${inquiry.name}', '${inquiry.id}')" title="<@localize locale="${locale}" key="tool.deleteTitle" />" class="red">DELETE</button>
+                                </div>
+                            </div>
+                            <div class="divider--border"></div>
+                        </li>
                     </#list>
-                </table>
+                </ul>
             </#if>
             <div id="loaderInquiry"></div>
             <div id="errorInquiry"></div>
@@ -131,10 +134,10 @@
                         </tr>
                     </table>
                     <div class="widget-results__results-info__buttons">
-                        <button type="button" onclick="toggleExpandAll(true)" title="<@localize locale="${locale}" key="tool.toggleOpenAll" />">
+                        <button type="button" onclick="toggleExpandAll(true)" title="<@localize locale="${locale}" key="tool.toggleOpenAll"/>">
                             <strong>Open all</strong>
                         </button>
-                        <button type="button" onclick="toggleExpandAll(false)" title="<@localize locale="${locale}" key="tool.toggleCloseAll" />">
+                        <button type="button" onclick="toggleExpandAll(false)" title="<@localize locale="${locale}" key="tool.toggleCloseAll"/>">
                             <strong>Close all</strong>
                         </button>
                     </div>
@@ -182,34 +185,32 @@
     <!-- XLSX npm lib -->
     <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
     <script type="text/javascript">
-        const currentID = "${(displayedInquiry??)?then('${displayedInquiry.id}', '')}";
-        const loader = document.getElementById("loaderInquiry");
-        const errorBlock = document.getElementById("errorInquiry");
+        let currentID = "${(displayedInquiry??)?then('${displayedInquiry.id}', '')}";
         let openAll = true;
         let enableButtons = true;
 
         showloader = () => {
+            const loader = document.getElementById("loaderInquiry");
             enableButtons = false;
             loader.classList.add("display");
         }
 
         hideloader = () => {
+            const loader = document.getElementById("loaderInquiry");
             enableButtons = true;
             loader.classList.remove("display");
         }
 
         showError = (error) => {
+            const errorBlock = document.getElementById("errorInquiry");
             errorBlock.textContent = "Error: " + error;
             errorBlock.classList.add("display");
         }
 
         hideError = () => {
+            const errorBlock = document.getElementById("errorInquiry");
             errorBlock.textContent = "";
             errorBlock.classList.remove("display");
-        }
-
-        getOpenAll = () => {
-            return openAll;
         }
 
         toggleExpandAll = (bool) => {
@@ -266,6 +267,28 @@
             }
         }
 
+        showInquiry = (id) => {
+            showloader();
+            const url = "${urlPage}?id=" + id + "&action=fetchByID";
+            console.log(id)
+
+            fetch(url)
+                .then(res => res.json())
+                .then((body) => {
+                    if (body.status === "OK") {
+                        hideError();
+                    } else {
+                        showError(body.status)
+                    }
+                })
+                .catch((error) => showError(error))
+                .finally(() => {
+                    setTimeout(function(){
+                        hideloader();
+                    }, 500);
+                });
+        }
+
         deleteData = (name, id) => {
             if (enableButtons && confirm("<@localize locale="${locale}" key="tool.deleteConfirm" /> " + name + "?") == true) {
                 showloader();
@@ -276,11 +299,6 @@
                     .then((body) => {
                         if (body.status === "OK") {
                             hideError();
-                            if (currentID === id) {
-                                location.href = "${urlPage}";
-                            } else {
-                                location.href = "${urlPage}?id=" + currentID;
-                            }
                         } else {
                             showError(body.status)
                         }
