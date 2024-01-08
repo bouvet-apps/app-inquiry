@@ -2,7 +2,7 @@ const libs = {
   repository: require("/lib/repository"),
   access: require("/lib/access"),
   util: require("/lib/util"),
-  eventLib: require("/lib/xp/event"),
+  event: require("/lib/xp/event"),
   content: require("/lib/xp/content"),
   context: require("/lib/xp/context")
 };
@@ -19,7 +19,7 @@ if (repoCheck) {
   log.error(`Repo for ${app.name} failed to set up.`);
 }
 
-libs.eventLib.listener({
+libs.event.listener({
   type: "node.updated",
   localOnly: true,
   callback: function (event) {
