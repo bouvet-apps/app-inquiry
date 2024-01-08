@@ -23,7 +23,6 @@ libs.eventLib.listener({
   type: "node.updated",
   localOnly: true,
   callback: function (event) {
-    log.info(JSON.stringify(event, null, 2));
     if (event.data.nodes[0]) {
       libs.context.run({
         branch: "draft",
