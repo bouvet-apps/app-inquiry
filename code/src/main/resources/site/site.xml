@@ -166,16 +166,6 @@
                   </help-text>
                   <occurrences minimum="1" maximum="1"/>
                 </input>
-                <input name="id" type="CustomSelector">
-                  <label i18n="site.id">ID</label>
-                  <help-text i18n="site.id-help">
-                    Please select an auto-generated ID for this question. Do not remove the existing ID unless you want to fundamentally alter the question so it will become a new separate data set.
-                  </help-text>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <service>id-selector</service>
-                  </config>
-                </input>
                 <input name="required" type="CheckBox">
                   <label i18n="site.required">Answer required</label>
                   <help-text i18n="site.required-help">
@@ -198,16 +188,6 @@
                   </help-text>
                   <occurrences minimum="1" maximum="1"/>
                 </input>
-                <input name="id" type="CustomSelector">
-                  <label i18n="site.id">ID</label>
-                  <help-text i18n="site.id-help">
-                    Please select an auto-generated ID for this question. Do not remove the existing ID unless you want to fundamentally alter the question so it will become a new separate data set.
-                  </help-text>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <service>id-selector</service>
-                  </config>
-                </input>
                 <input name="required" type="CheckBox">
                   <label i18n="site.required">Answer required</label>
                   <help-text i18n="site.required-help">
@@ -229,16 +209,6 @@
                     Add a multiple choice question that you want the user to answer. The user can select only one answer.
                   </help-text>
                   <occurrences minimum="0" maximum="1"/>
-                </input>
-                <input name="id" type="CustomSelector">
-                  <label i18n="site.id">ID</label>
-                  <help-text i18n="site.id-help">
-                    Please select an auto-generated ID for this question. Do not remove the existing ID unless you want to fundamentally alter the question so it will become a new separate data set.
-                  </help-text>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <service>id-selector</service>
-                  </config>
                 </input>
                 <input name="required" type="CheckBox">
                   <label i18n="site.required">Answer required</label>
@@ -270,16 +240,6 @@
                     Add a multiple choice question that you want the user to answer. The user can select multiple answers.
                   </help-text>
                   <occurrences minimum="0" maximum="1"/>
-                </input>
-                <input name="id" type="CustomSelector">
-                  <label i18n="site.id">ID</label>
-                  <help-text i18n="site.id-help">
-                    Please select an auto-generated ID for this question. Do not remove the existing ID unless you want to fundamentally alter the question so it will become a new separate data set.
-                  </help-text>
-                  <occurrences minimum="1" maximum="1"/>
-                  <config>
-                    <service>id-selector</service>
-                  </config>
                 </input>
                 <input name="required" type="CheckBox">
                   <label i18n="site.required">Answer required</label>
