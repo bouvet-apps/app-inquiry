@@ -176,6 +176,7 @@ dependencies {
     include "com.enonic.xp:testing:${xpVersion}"
     include "com.enonic.xp:lib-repo:${xpVersion}"
     include "com.enonic.xp:lib-node:${xpVersion}"
+    include "com.enonic.xp:lib-event:${xpVersion}"
     include 'com.github.tineikt:xp-lib-freemarker:2.0.3'
 }
 
