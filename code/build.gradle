@@ -172,7 +172,6 @@ dependencies {
     include "com.enonic.xp:lib-i18n:${xpVersion}"
     include "com.enonic.xp:lib-io:${xpVersion}"
     include "com.enonic.xp:lib-portal:${xpVersion}"
-    include "com.enonic.xp:testing:${xpVersion}"
     include "com.enonic.xp:lib-repo:${xpVersion}"
     include "com.enonic.xp:lib-node:${xpVersion}"
     include 'com.github.tineikt:xp-lib-freemarker:2.0.2'
