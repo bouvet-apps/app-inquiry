@@ -22,7 +22,7 @@ if (repoCheck) {
 libs.event.listener({
   type: "node.updated",
   localOnly: true,
-  callback: function (event) {
+  callback: function(event) {
     if (event.data.nodes[0]) {
       libs.context.run({
         branch: "draft",
