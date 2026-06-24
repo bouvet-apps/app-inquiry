@@ -4,25 +4,31 @@
     ],
     "parser": "@babel/eslint-parser",
     "rules": {
+        "import/export": [
+            "error"
+        ],
         "import/extensions": [
             "error",
-            "ignorePackages",
-            {
-                "": "never",
-                "js": "never",
-                "mjs": "never",
-                "jsx": "never",
-                "ts": "never",
-                "tsx": "never",
-                "es6": "never"
-            }
+            "never"
         ],
+        "import/newline-after-import": [
+            "error"
+        ],
+        "import/no-absolute-path": "off",
         "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": true
-            }
+            "error"
         ],
+        "import/no-unresolved": "off",
+        "comma-dangle": [
+            "error",
+            "never"
+        ],
+        "eol-last": [
+            "error",
+            "always"
+        ],
+        "func-names": "off",
+        "global-require": "off",
         "indent": [
             "error",
             2,
@@ -30,40 +36,79 @@
                 "SwitchCase": 1
             }
         ],
+        "keyword-spacing": [
+            "error",
+            {
+                "before": true,
+                "after": true
+            }
+        ],
         "linebreak-style": [
             "error",
             "unix"
         ],
-        "quotes": [
-            "error",
-            "double"
-        ],
-        "semi": [
-            "error",
-            "always"
-        ],
-        "comma-dangle": [
-            "error",
-            "never"
-        ],
+        "max-len": "off",
         "no-cond-assign": [
             "error",
             "always"
         ],
         "no-console": "off",
-        "global-require": "off",
-        "import/no-unresolved": "off",
-        "import/no-absolute-path": "off",
+        "no-duplicate-imports": [
+            "error",
+            {
+                "includeExports": true
+            }
+        ],
+        "no-import-assign": "error",
+        "no-multi-spaces": "error",
+        "no-plusplus": "off",
+        "no-self-assign": "error",
+        "no-sparse-arrays": "error",
+        "no-tabs": "error",
+        "no-template-curly-in-string": "error",
+        "no-trailing-spaces": "error",
+        "no-undef": "error",
         "no-underscore-dangle": "off",
+        "no-unreachable": "error",
+        "no-use-before-define": "error",
+        "no-whitespace-before-property": "error",
         "object-shorthand": "off",
         "prefer-destructuring": "off",
+        "quotes": [
+            "error",
+            "double"
+        ],
         "radix": [
             "error",
             "as-needed"
         ],
-        "no-plusplus": "off",
-        "max-len": "off",
-        "func-names": "off"
+        "require-atomic-updates": "error",
+        "semi": [
+            "error",
+            "always"
+        ],
+        "semi-spacing": "error",
+        "semi-style": [
+            "error",
+            "last"
+        ],
+        "space-before-function-paren": [
+            "error",
+            "never"
+        ],
+        "space-in-parens": [
+            "error",
+            "never"
+        ],
+        "switch-colon-spacing": [
+            "error",
+            {
+                "after": true,
+                "before": false
+            }
+        ],
+        "use-isnan": "error",
+        "valid-typeof": "error"
     },
     "globals": {
         "require": true,
@@ -76,31 +121,5 @@
         "window": true,
         "__": true,
         "Java": true
-    },
-    "overrides": [
-        {
-            "files": [
-                "*.html",
-                "*.ftl",
-                "*.xml"
-            ],
-            "rules": {
-                "max-len": "off"
-            }
-        }
-    ],
-    "settings": {
-        "import/resolver": {
-            "node": {
-                "extensions": [
-                    ".js",
-                    ".jsx",
-                    ".es6",
-                    ".ts",
-                    ".tsx",
-                    ".json"
-                ]
-            }
-        }
     }
 }

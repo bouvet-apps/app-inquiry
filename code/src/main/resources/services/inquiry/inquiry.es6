@@ -33,7 +33,7 @@ exports.post = (req) => {
     });
 
     // Save/update the current inquiry questions and save the answers
-    savedAnswers = libs.repository.runAsAdmin(() => {
+    savedAnswers = libs.util.runAsAdmin(() => {
       if (libs.repository.checkRepo() && libs.repository.saveInquiry(identifier, questions) && libs.repository.saveAnswers(identifier, answers)) {
         return true;
       }

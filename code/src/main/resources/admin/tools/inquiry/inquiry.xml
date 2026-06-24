@@ -3,5 +3,6 @@
   <description i18n="tool.description">View the results of your inquiries</description>
   <allow>
       <principal>role:system.admin</principal>
+      <principal>role:inquiry.tool.admin</principal>
   </allow>
 </tool>

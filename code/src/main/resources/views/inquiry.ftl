@@ -11,7 +11,7 @@
       </div>
     [/#if]
     [#if (boxContinue?has_content)]
-      <button id="inquiry-box-continue" class="inquiry-box__continue" aria-haspopup="dialog">${boxContinue}</button>
+      <button id="inquiry-box-continue" class="${theme?contains('minimal')?then('button', 'inquiry-box__continue')}" aria-haspopup="dialog">${boxContinue}</button>
     [/#if]
   </div>
   <button id="inquiry-box-close" class="inquiry-box__close" title="${titleClose}" aria-label="${titleClose}">&#10006;</button>
@@ -68,7 +68,7 @@
               [/#list]
             [/#if]
           [/#list]
-          <button id="inquiry-popup-finish" type="submit" class="inquiry-popup__finish">${popupSubmit}</button>
+          <button id="inquiry-popup-finish" type="submit" class="${theme?contains('minimal')?then('button', 'inquiry-popup__finish')}">${popupSubmit}</button>
         </form>
         <div id="inquiry-popup-error" class="inquiry-popup__error inquiry-hidden">
           ${submitError}
