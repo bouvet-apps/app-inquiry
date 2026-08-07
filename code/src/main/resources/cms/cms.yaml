@@ -1,0 +1,466 @@
+kind: "CMS"
+form:
+  - type: "CheckBox"
+    name: "active"
+    label:
+      text: "Activate Inquiry App"
+      i18n: "site.active"
+    helpText:
+      text: "\n        Activate to display the inquiry box on your website. When a\
+        \ visitor closes the inquiry box or submits the inquiry form, their browser\
+        \ will remember this and prevent it from displaying again unless the identifier\
+        \ has changed in the meantime.\n      "
+      i18n: "site.active-help"
+    occurrences:
+      min: 0
+      max: 1
+  - type: "TextLine"
+    name: "identifier"
+    label:
+      text: "Identifier"
+      i18n: "site.identifier"
+    helpText:
+      text: "\n        Enter some text and/or number to identify the current inquiry.\
+        \ All forms submitted\n        by visitors will be coupled to this identifier.\
+        \ When you want to create a new inquiry, change the identifier\n        to\
+        \ something new and unique. Please don't use any spaces or special characters\
+        \ other than \"-\".\n      "
+      i18n: "site.identifier-help"
+    occurrences:
+      min: 1
+      max: 1
+    maxLength: 25
+    regexp: "^[A-Za-z0-9-]*$"
+    showCounter: true
+    default: "Inquiry-1"
+  - type: "RadioButton"
+    name: "theme"
+    label:
+      text: "Color theme"
+      i18n: "site.theme"
+    helpText:
+      text: "\n        Choose a styling theme for the inquiry form.\n      "
+      i18n: "site.theme-help"
+    occurrences:
+      min: 1
+      max: 1
+    options:
+      - value: "light"
+        label:
+          text: "Light theme"
+          i18n: "site.theme.light"
+      - value: "dark"
+        label:
+          text: "Dark theme"
+          i18n: "site.theme.dark"
+      - value: "light-minimal"
+        label:
+          text: "Light minimal theme"
+          i18n: "site.theme.light-minimal"
+      - value: "dark-minimal"
+        label:
+          text: "Dark minimal theme"
+          i18n: "site.theme.dark-minimal"
+    default: "light"
+  - type: "FieldSet"
+    label:
+      text: "Inquiry box"
+      i18n: "site.box"
+    items:
+      - type: "TextLine"
+        name: "boxTitle"
+        label:
+          text: "Title"
+          i18n: "site.boxTitle"
+        helpText:
+          text: "\n            Add a title to the initial inquiry box where a user\
+            \ can choose to proceed to the inquiry form. For example: Let us know\
+            \ what you think!\n          "
+          i18n: "site.boxTitle-help"
+        occurrences:
+          min: 0
+          max: 1
+      - type: "HtmlArea"
+        name: "boxText"
+        label:
+          text: "Text"
+          i18n: "site.boxText"
+        helpText:
+          text: "\n            Add a descriptive text to the inquiry box. It will\
+            \ be displayed below the title.\n          "
+          i18n: "site.boxText-help"
+        occurrences:
+          min: 0
+          max: 1
+      - type: "TextLine"
+        name: "boxContinue"
+        label:
+          text: "Button text"
+          i18n: "site.boxContinue"
+        helpText:
+          text: "\n            This is the button a user will click if they want to\
+            \ continue to the inquiry form. Add a fitting text to the button.\n  \
+            \        "
+          i18n: "site.boxContinue-help"
+        occurrences:
+          min: 0
+          max: 1
+      - type: "RadioButton"
+        name: "boxPosition"
+        label:
+          text: "Position of box on screen"
+          i18n: "site.boxPosition"
+        helpText:
+          text: "\n            Decide where on the webpage the info box should be\
+            \ displayed.\n          "
+          i18n: "site.boxPosition-help"
+        occurrences:
+          min: 1
+          max: 1
+        options:
+          - value: "topLeft"
+            label:
+              text: "Top left"
+              i18n: "site.boxPosition.topLeft"
+          - value: "topRight"
+            label:
+              text: "Top right"
+              i18n: "site.boxPosition.topRight"
+          - value: "bottomLeft"
+            label:
+              text: "Bottom left"
+              i18n: "site.boxPosition.bottomLeft"
+          - value: "bottomRight"
+            label:
+              text: "Bottom right"
+              i18n: "site.boxPosition.bottomRight"
+        default: "bottomRight"
+  - type: "FieldSet"
+    label:
+      text: "Popup form"
+      i18n: "site.popup"
+    items:
+      - type: "TextLine"
+        name: "popupTitle"
+        label:
+          text: "Title"
+          i18n: "site.popupTitle"
+        helpText:
+          text: "\n            Add a title to the inquiry form.\n          "
+          i18n: "site.popupTitle-help"
+        occurrences:
+          min: 0
+          max: 1
+      - type: "HtmlArea"
+        name: "popupText"
+        label:
+          text: "Text"
+          i18n: "site.popupText"
+        helpText:
+          text: "\n            Add a describing info text about the inquiry form.\
+            \ The text is displayed below the title.\n          "
+          i18n: "site.popupText-help"
+        occurrences:
+          min: 0
+          max: 1
+      - type: "TextLine"
+        name: "popupSubmit"
+        label:
+          text: "Button text"
+          i18n: "site.popupSubmit"
+        helpText:
+          text: "\n            This is the button a user will click when they have\
+            \ completed the inquiry form and want to submit their reply. Add a fitting\
+            \ text to the button, for example: submit.\n          "
+          i18n: "site.popupSubmit-help"
+        occurrences:
+          min: 0
+          max: 1
+      - type: "TextLine"
+        name: "popupResponseTitle"
+        label:
+          text: "Title after form submitted"
+          i18n: "site.popupResponseTitle"
+        helpText:
+          text: "\n            Add a title to display after the user has submitted\
+            \ their response. For example: Thank you for your reply.\n          "
+          i18n: "site.popupResponseTitle-help"
+        occurrences:
+          min: 0
+          max: 1
+      - type: "HtmlArea"
+        name: "popupResponseText"
+        label:
+          text: "Text after form submitted"
+          i18n: "site.popupResponseText"
+        helpText:
+          text: "\n            Add some text to display after the user has submitted\
+            \ their response.\n          "
+          i18n: "site.popupResponseText-help"
+        occurrences:
+          min: 0
+          max: 1
+      - type: "OptionSet"
+        name: "popupQuestions"
+        expanded: false
+        label:
+          text: "Questions"
+          i18n: "site.popupQuestions"
+        occurrences:
+          min: 0
+          max: 0
+        options:
+          - name: "textlineAnswer"
+            label:
+              text: "Textline"
+              i18n: "site.textlineAnswer"
+            items:
+              - type: "TextLine"
+                name: "question"
+                label:
+                  text: "Question"
+                  i18n: "site.question"
+                helpText:
+                  text: "\n                    Add a question that that requires a\
+                    \ short answer, no more than one line.\n                  "
+                  i18n: "site.questionShort-help"
+                occurrences:
+                  min: 1
+                  max: 1
+              - type: "CheckBox"
+                name: "required"
+                label:
+                  text: "Answer required"
+                  i18n: "site.required"
+                helpText:
+                  text: "\n                    Checking this means that the user has\
+                    \ to answer the question. The inquiry form can not be submitted\
+                    \ before this question is answered.\n                  "
+                  i18n: "site.required-help"
+                occurrences:
+                  min: 0
+                  max: 1
+              - type: "TextLine"
+                name: "placeholder"
+                label:
+                  text: "Placeholder text"
+                  i18n: "site.placeholder"
+                occurrences:
+                  min: 0
+                  max: 1
+          - name: "textareaAnswer"
+            label:
+              text: "Textarea"
+              i18n: "site.textareaAnswer"
+            items:
+              - type: "TextLine"
+                name: "question"
+                label:
+                  text: "Question"
+                  i18n: "site.question"
+                helpText:
+                  text: "\n                    Add a question that that requires a\
+                    \ longer answer, multiple lines.\n                  "
+                  i18n: "site.questionLong-help"
+                occurrences:
+                  min: 1
+                  max: 1
+              - type: "CheckBox"
+                name: "required"
+                label:
+                  text: "Answer required"
+                  i18n: "site.required"
+                helpText:
+                  text: "\n                    Checking this means that the user has\
+                    \ to answer the question. The inquiry form can not be submitted\
+                    \ before this question is answered.\n                  "
+                  i18n: "site.required-help"
+                occurrences:
+                  min: 0
+                  max: 1
+              - type: "TextLine"
+                name: "placeholder"
+                label:
+                  text: "Placeholder text"
+                  i18n: "site.placeholder"
+                occurrences:
+                  min: 0
+                  max: 1
+          - name: "radiobuttonAnswer"
+            label:
+              text: "Radiobuttons"
+              i18n: "site.radiobuttonAnswer"
+            items:
+              - type: "TextLine"
+                name: "question"
+                label:
+                  text: "Question"
+                  i18n: "site.question"
+                helpText:
+                  text: "\n                    Add a multiple choice question that\
+                    \ you want the user to answer. The user can select only one answer.\n\
+                    \                  "
+                  i18n: "site.questionRadio-help"
+                occurrences:
+                  min: 0
+                  max: 1
+              - type: "CheckBox"
+                name: "required"
+                label:
+                  text: "Answer required"
+                  i18n: "site.required"
+                helpText:
+                  text: "\n                    Checking this means that the user has\
+                    \ to answer the question. The inquiry form can not be submitted\
+                    \ before this question is answered.\n                  "
+                  i18n: "site.required-help"
+                occurrences:
+                  min: 0
+                  max: 1
+              - type: "ItemSet"
+                name: "answerOptions"
+                label:
+                  text: "Answers"
+                  i18n: "site.answerOptions"
+                occurrences:
+                  min: 0
+                  max: 0
+                items:
+                  - type: "TextLine"
+                    name: "text"
+                    label:
+                      text: "Answer"
+                      i18n: "site.answerOptions.text"
+                    occurrences:
+                      min: 0
+                      max: 1
+                  - type: "CheckBox"
+                    name: "default"
+                    label:
+                      text: "Selected by default"
+                      i18n: "site.answerOptions.default"
+                    occurrences:
+                      min: 0
+                      max: 1
+          - name: "checkboxAnswer"
+            label:
+              text: "Checkboxes"
+              i18n: "site.checkboxAnswer"
+            items:
+              - type: "TextLine"
+                name: "question"
+                label:
+                  text: "Question"
+                  i18n: "site.question"
+                helpText:
+                  text: "\n                    Add a multiple choice question that\
+                    \ you want the user to answer. The user can select multiple answers.\n\
+                    \                  "
+                  i18n: "site.questionCheckbox-help"
+                occurrences:
+                  min: 0
+                  max: 1
+              - type: "CheckBox"
+                name: "required"
+                label:
+                  text: "Answer required"
+                  i18n: "site.required"
+                helpText:
+                  text: "\n                    Checking this means that the user has\
+                    \ to answer the question. The inquiry form can not be submitted\
+                    \ before this question is answered.\n                  "
+                  i18n: "site.required-help"
+                occurrences:
+                  min: 0
+                  max: 1
+              - type: "ItemSet"
+                name: "answerOptions"
+                label:
+                  text: "Answers"
+                  i18n: "site.answerOptions"
+                occurrences:
+                  min: 0
+                  max: 0
+                items:
+                  - type: "TextLine"
+                    name: "text"
+                    label:
+                      text: "Answer"
+                      i18n: "site.answerOptions.text"
+                    occurrences:
+                      min: 0
+                      max: 1
+                  - type: "CheckBox"
+                    name: "default"
+                    label:
+                      text: "Selected by default"
+                      i18n: "site.answerOptions.default"
+                    occurrences:
+                      min: 0
+                      max: 1
+        selection:
+          min: 1
+          max: 1
+  - type: "FieldSet"
+    label: "Advanced settings"
+    items:
+      - type: "CheckBox"
+        name: "testmode"
+        label:
+          text: "Enable test mode"
+          i18n: "site.testmode"
+        helpText:
+          text: "\n            Enable if you want to always show the inquiry box on\
+            \ every page load, even if you have closed or submitted the inquiry before.\
+            \ Only works in preview/edit mode. When you're testing the form, don't\
+            \ forget to delete your test replies via the Inquiry admin tool before\
+            \ activating it on the master branch.\n          "
+          i18n: "site.testmode-help"
+        occurrences:
+          min: 0
+          max: 1
+      - type: "Long"
+        name: "fontSize"
+        label:
+          text: "Base font-size (px)"
+          i18n: "site.fontSize"
+        helpText:
+          text: "\n            By default the font-size will be inherited from the\
+            \ body. Use this field to set a base font-size manually if needed (enter\
+            \ value between 1 and 30).\n          "
+          i18n: "site.fontSize-help"
+        occurrences:
+          min: 0
+          max: 1
+        min: 1
+        max: 30
+      - type: "Long"
+        name: "popupZindex"
+        label:
+          text: "Z-index"
+          i18n: "site.zindex.popup"
+        helpText:
+          text: "\n            Manually set the z-index value here if you need to.\
+            \ By default a z-index value of 99999 will be used. Only use this field\
+            \ if you need to fix issues with other overlapping elements on your site.\
+            \ The element with highest z-index is displayed on top.\n          "
+          i18n: "site.zindex-help"
+        occurrences:
+          min: 0
+          max: 1
+        max: 999999999
+      - type: "Long"
+        name: "boxZindex"
+        label:
+          text: "Z-index"
+          i18n: "site.zindex.box"
+        helpText:
+          text: "\n            Manually set the z-index value here if you need to.\
+            \ By default a z-index value of 99999 will be used. Only use this field\
+            \ if you need to fix issues with other overlapping elements on your site.\
+            \ The element with highest z-index is displayed on top.\n          "
+          i18n: "site.zindex-help"
+        occurrences:
+          min: 0
+          max: 1
+        max: 999999999

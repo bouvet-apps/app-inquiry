@@ -1,6 +1,7 @@
 const libs = {
   portal: require("/lib/xp/portal"),
   context: require("/lib/xp/context"),
+  // TODO XP8: /lib/tineikt/freemarker has no XP 8 build (latest 2.0.3 is XP7-only). Replace engine or await an XP8 release before this runs on XP 8.
   freemarker: require("/lib/tineikt/freemarker"),
   util: require("/lib/util"),
   i18n: require("/lib/xp/i18n")

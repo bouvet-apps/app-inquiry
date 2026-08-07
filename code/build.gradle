@@ -1,14 +1,11 @@
 plugins {
     id 'java'
     id 'maven-publish'
-    id 'com.enonic.xp.app' version '3.4.0'
+    id 'com.enonic.xp.app'
     id "com.github.node-gradle.node" version "7.0.0"
     id 'org.ajoberstar.grgit' version '4.1.1'
     id "com.github.ben-manes.versions" version '0.47.0'
 }
-
-sourceCompatibility = "1.11"
-targetCompatibility = "1.11"
 
 publishing {
     publications {
@@ -20,17 +17,6 @@ publishing {
             from components.java
         }
     }
-}
-
-app {
-    name = project.ext.appName
-    displayName = project.ext.displayName
-    vendorName = project.ext.vendorName
-    vendorUrl = project.ext.vendorUrl
-    systemVersion = "${xpVersion}"
-    keepArchiveFileName = true
-
-    rawDevSourcePaths = ["/enonic-xp/devpath", "/enonic-xp/devpathbuild"]
 }
 
 ext {
@@ -164,18 +150,19 @@ task enonicVersion {
 }
 
 dependencies {
-    implementation "com.enonic.xp:core-api:${xpVersion}"
-    implementation "com.enonic.xp:portal-api:${xpVersion}"
-    include "com.enonic.xp:lib-admin:${xpVersion}"
-    include "com.enonic.xp:lib-auth:${xpVersion}"
-    include "com.enonic.xp:lib-content:${xpVersion}"
-    include "com.enonic.xp:lib-context:${xpVersion}"
-    include "com.enonic.xp:lib-i18n:${xpVersion}"
-    include "com.enonic.xp:lib-io:${xpVersion}"
-    include "com.enonic.xp:lib-portal:${xpVersion}"
-    include "com.enonic.xp:lib-repo:${xpVersion}"
-    include "com.enonic.xp:lib-node:${xpVersion}"
-    include "com.enonic.xp:lib-event:${xpVersion}"
+    implementation xplibs.api.core
+    implementation xplibs.api.portal
+    include xplibs.admin
+    include xplibs.auth
+    include xplibs.content
+    include xplibs.context
+    include xplibs.i18n
+    include xplibs.io
+    include xplibs.portal
+    include xplibs.repo
+    include xplibs.node
+    include xplibs.event
+    // TODO XP8: xp-lib-freemarker 2.0.3 is XP7-only (no XP 8 build). Bump to an XP8 release or drop when the templating engine is replaced.
     include 'com.github.tineikt:xp-lib-freemarker:2.0.3'
 }
 
@@ -199,6 +186,6 @@ node {
 }
 
 wrapper {
-    gradleVersion = '8.3'
+    gradleVersion = '9.5.0'
     distributionType = Wrapper.DistributionType.BIN
 }
