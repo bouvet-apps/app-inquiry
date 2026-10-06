@@ -41,9 +41,9 @@ task packageApplication {
     description 'Packages entire application'
     doLast {
         copy {
-            from "build/libs/${projectName}-${version}.jar"
+            from tasks.named('jar').get().archiveFile
             into "${deployDir}"
-            rename ("${projectName}-${version}.jar", "${projectName}.jar")
+            rename { "${projectName}.jar" }
         }
     }
 }

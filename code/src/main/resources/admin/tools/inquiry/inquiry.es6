@@ -1,5 +1,4 @@
 const libs = {
-  // TODO XP8: /lib/tineikt/freemarker has no XP 8 build (latest 2.0.3 is XP7-only). Replace engine or await an XP8 release before this runs on XP 8.
   freemarker: require("/lib/freemarker"),
   portal: require("/lib/xp/portal"),
   admin: require("/lib/xp/admin"),
@@ -188,9 +187,7 @@ exports.get = (req) => {
     urlCss: libs.portal.assetUrl({ path: "css/admintool.css" }),
     inquiryList: inquiryList,
     displayedInquiry: displayedInquiry.length > 0 ? displayedInquiry[0] : null,
-    chartItems: chartItems,
-    // TODO XP8: admin.getLocale() was removed from /lib/xp/admin in XP 8. Replace with an XP 8 locale source before this runs on XP 8.
-    locale: libs.admin.getLocale() ?? "en"
+    chartItems: chartItems
   };
 
   const view = resolve("./inquiry.ftl");
