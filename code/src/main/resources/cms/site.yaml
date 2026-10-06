@@ -1,0 +1,4 @@
+kind: "Site"
+processors:
+  - name: "inquiry"
+    order: 1

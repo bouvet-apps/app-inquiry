@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="${locale}">
+<html lang="${.lang}">
   <head>
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-    <title><@localize locale="${locale}" key="tool.pageTitle" /></title>
+    <title>${portal.localize("tool.pageTitle")}</title>
 
     <link rel="stylesheet" href="${urlCss}">
 
@@ -28,8 +28,8 @@
           <#if (chartItem.type == "piechart")>
             // Create the data table.
             data = new google.visualization.DataTable();
-            data.addColumn("string", "<@localize locale="${locale}" key="tool.answer" />");
-            data.addColumn("number", "<@localize locale="${locale}" key="tool.count" />");
+            data.addColumn("string", "${portal.localize("tool.answer")}");
+            data.addColumn("number", "${portal.localize("tool.count")}");
             data.addRows([
               <#list chartItem.answers as answer>
                 ["${answer.text}", ${answer.count?c}],
@@ -50,8 +50,8 @@
           <#if (chartItem.type == "barchart")>
             // Create the data table.
             data = new google.visualization.DataTable();
-            data.addColumn("string", "<@localize locale="${locale}" key="tool.answer" />");
-            data.addColumn("number", "<@localize locale="${locale}" key="tool.count" />");
+            data.addColumn("string", "${portal.localize("tool.answer")}");
+            data.addColumn("number", "${portal.localize("tool.count")}");
             data.addRows([
               <#list chartItem.answers as answer>
                 ["${answer.text}", ${answer.count?c}],
@@ -64,7 +64,7 @@
               legend: { position: "none" },
               axes: {
                 x: {
-                  0: { side: "top", label: "<@localize locale="${locale}" key="tool.count" />"} // Top x-axis.
+                  0: { side: "top", label: "${portal.localize("tool.count")}"} // Top x-axis.
                 }
               },
               bar: { groupWidth: "90%" }
@@ -81,21 +81,21 @@
   <body>
     <div class="inquiry">
       <div class="sidebar">
-        <span class="title"><@localize locale="${locale}" key="tool.allInquiries" /></span>
+        <span class="title">${portal.localize("tool.allInquiries")}</span>
         <#if (inquiryList?size == 0)>
-          <div class="no-data"><@localize locale="${locale}" key="tool.noData" /></div>
+          <div class="no-data">${portal.localize("tool.noData")}</div>
         <#else>
           <table>
             <#list inquiryList as inquiry>
               <#assign activeClass = inquiry.displayed?then('class="active"', '')>
               <tr>
                 <td>
-                  <a href="${urlPage}?id=${inquiry.id}" ${activeClass} onclick="showloader()" title="<@localize locale="${locale}" key="tool.showRepliesFor" /> ${inquiry.name}">${inquiry.name}</a>
-                  <span class="replies">${inquiry.count?c} <@localize locale="${locale}" key="tool.replies" /></span>
+                  <a href="${urlPage}?id=${inquiry.id}" ${activeClass} onclick="showloader()" title="${portal.localize("tool.showRepliesFor")} ${inquiry.name}">${inquiry.name}</a>
+                  <span class="replies">${inquiry.count?c} ${portal.localize("tool.replies")}</span>
                 </td>
                 <td style="text-align:right;">
-                  <button type="button" onclick="downloadExcelFile('${inquiry.name}', '${inquiry.id}')" title="<@localize locale="${locale}" key="tool.excelTitle" />" class="green">EXCEL</button>
-                  <button type="button" onclick="deleteData('${inquiry.name}', '${inquiry.id}')" title="<@localize locale="${locale}" key="tool.deleteTitle" />" class="red">X</button>
+                  <button type="button" onclick="downloadExcelFile('${inquiry.name}', '${inquiry.id}')" title="${portal.localize("tool.excelTitle")}" class="green">EXCEL</button>
+                  <button type="button" onclick="deleteData('${inquiry.name}', '${inquiry.id}')" title="${portal.localize("tool.deleteTitle")}" class="red">X</button>
                 </td>
               </tr>
             </#list>
@@ -108,32 +108,32 @@
         <#if (displayedInquiry??)>
           <div class="results__header">
             <span class="title">${displayedInquiry.name}</span>
-            <button type="button" onclick="printPage()" title="<@localize locale="${locale}" key="tool.printTitle" />" class="blue"><@localize locale="${locale}" key="tool.print" /></button>
+            <button type="button" onclick="printPage()" title="${portal.localize("tool.printTitle")}" class="blue">${portal.localize("tool.print")}</button>
           </div>
           <div class="divider--border"></div>
           <table>
             <tr>
-              <td><@localize locale="${locale}" key="tool.totalReplies" />:</td>
+              <td>${portal.localize("tool.totalReplies")}:</td>
               <td>${displayedInquiry.count}</td>
             </tr>
             <tr>
-              <td><@localize locale="${locale}" key="tool.firstReply" />:</td>
+              <td>${portal.localize("tool.firstReply")}:</td>
               <td>${displayedInquiry.dateFirst}</td>
             </tr>
             <tr>
-              <td><@localize locale="${locale}" key="tool.lastReply" />:</td>
+              <td>${portal.localize("tool.lastReply")}:</td>
               <td>${displayedInquiry.dateLast}</td>
             </tr>
           </table>
           <div class="divider"></div>
         </#if>
         <#if (chartItems?size == 0)>
-          <div class="no-data"><@localize locale="${locale}" key="tool.noData" /></div>
+          <div class="no-data">${portal.localize("tool.noData")}</div>
         <#else>
           <#list chartItems as chartItem>
             <#if (chartItem.type == "piechart" || chartItem.type == "barchart")>
               <div style="page-break-inside: avoid;">
-                <button id="question${chartItem?counter}" class="question expanded" onclick="toggleExpand(${chartItem?counter})" title="<@localize locale="${locale}" key="tool.toggleTitle" />">
+                <button id="question${chartItem?counter}" class="question expanded" onclick="toggleExpand(${chartItem?counter})" title="${portal.localize("tool.toggleTitle")}">
                   <div class="arrow">></div>
                   <strong>${chartItem.title}</strong>
                 </button>
@@ -142,13 +142,13 @@
                 </div>
               </div>
             <#else>
-              <button id="question${chartItem?counter}" class="question expanded" onclick="toggleExpand(${chartItem?counter})" title="<@localize locale="${locale}" key="tool.toggleTitle" />">
+              <button id="question${chartItem?counter}" class="question expanded" onclick="toggleExpand(${chartItem?counter})" title="${portal.localize("tool.toggleTitle")}">
                 <div class="arrow">></div>
                 <strong>${chartItem.title}</strong>
               </button>
               <div id="answers${chartItem?counter}" class="answers display">
                 <#if (chartItem.answers?size == 0)>
-                  <div class="no-data"><@localize locale="${locale}" key="tool.noData" /></div>
+                  <div class="no-data">${portal.localize("tool.noData")}</div>
                 <#else>
                   <ul>
                     <#list chartItem.answers as answer>
@@ -218,7 +218,7 @@
             if (body.status === "OK") {
               const excelSheet = XLSX.utils.json_to_sheet(body.xlsRows);
               const excelWorkBook = XLSX.utils.book_new();
-              XLSX.utils.book_append_sheet(excelWorkBook, excelSheet, "Inquiry <@localize locale="${locale}" key="tool.replies" />");
+              XLSX.utils.book_append_sheet(excelWorkBook, excelSheet, "Inquiry ${portal.localize("tool.replies")}");
               XLSX.utils.sheet_add_aoa(excelSheet, [body.xlsHeaders], { origin: "A1" });
               XLSX.writeFile(excelWorkBook, name + ".xlsx", {});
               hideError();
@@ -236,7 +236,7 @@
       }
 
       deleteData = (name, id) => {
-        if (enableButtons && confirm("<@localize locale="${locale}" key="tool.deleteConfirm" /> " + name + "?") == true) {
+        if (enableButtons && confirm("${portal.localize("tool.deleteConfirm")} " + name + "?") == true) {
           showloader();
           const url = "${urlPage}?id=" + id + "&action=delete";
 

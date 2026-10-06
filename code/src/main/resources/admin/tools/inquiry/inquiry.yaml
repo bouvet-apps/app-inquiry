@@ -1,0 +1,10 @@
+kind: "AdminTool"
+title:
+  text: "Inquiry App"
+  i18n: "tool.name"
+description:
+  text: "View the results of your inquiries"
+  i18n: "tool.description"
+allow:
+  - "role:system.admin"
+  - "role:inquiry.tool.admin"
