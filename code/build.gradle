@@ -162,8 +162,7 @@ dependencies {
     include xplibs.repo
     include xplibs.node
     include xplibs.event
-    // TODO XP8: xp-lib-freemarker 2.0.3 is XP7-only (no XP 8 build). Bump to an XP8 release or drop when the templating engine is replaced.
-    include 'com.github.tineikt:xp-lib-freemarker:2.0.3'
+    include "no.item:lib-xp-freemarker:4.0.0"
 }
 
 repositories {
@@ -171,6 +170,7 @@ repositories {
     mavenCentral()
     xp.enonicRepo()
     maven { url 'https://jitpack.io' }
+    maven { url "https://repo.itemtest.no/releases" }
 }
 
 node {

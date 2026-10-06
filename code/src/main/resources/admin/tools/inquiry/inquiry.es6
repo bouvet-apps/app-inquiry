@@ -1,6 +1,6 @@
 const libs = {
   // TODO XP8: /lib/tineikt/freemarker has no XP 8 build (latest 2.0.3 is XP7-only). Replace engine or await an XP8 release before this runs on XP 8.
-  freemarker: require("/lib/tineikt/freemarker"),
+  freemarker: require("/lib/freemarker"),
   portal: require("/lib/xp/portal"),
   admin: require("/lib/xp/admin"),
   repository: require("/lib/repository"),
