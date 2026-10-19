@@ -25,7 +25,8 @@ const initInquiryEvents = () => {
   const dateToday = new Date();
   const cookieExpirationDate = new Date(dateToday.getFullYear() + 1, dateToday.getMonth() + 1).toUTCString();
   const inquiryID = box.dataset.identifier;
-  const testmode = box.dataset.testmode;
+  const testmode = box.dataset.testmode === "true";
+  const cookieName = `inquiry-${inquiryID}`;
   let enableSubmit = true;
 
   // Bind click/submit events
@@ -34,7 +35,7 @@ const initInquiryEvents = () => {
       if (event.key === "Escape") {
         // Close popupmodal on escape press
         popupModal.classList.add("inquiry-hidden");
-        document.cookie = `inquiryIdentifier=${inquiryID}; path=/; expires=${cookieExpirationDate};`;
+        document.cookie = `${cookieName}=closed; path=/; expires=${cookieExpirationDate};`;
       } else if (event.key === "Tab") {
         // Loop the focus within the modal when pressing tab
         if (focusableContent.length > 0) {
@@ -57,7 +58,7 @@ const initInquiryEvents = () => {
 
   boxClose.addEventListener("click", () => {
     box.classList.add("inquiry-hidden");
-    document.cookie = `inquiryIdentifier=${inquiryID}; path=/; expires=${cookieExpirationDate};`;
+    document.cookie = `${cookieName}=closed; path=/; expires=${cookieExpirationDate};`;
   });
 
   if (boxContinue) {
@@ -74,7 +75,7 @@ const initInquiryEvents = () => {
 
   popupClose.addEventListener("click", () => {
     popupModal.classList.add("inquiry-hidden");
-    document.cookie = `inquiryIdentifier=${inquiryID}; path=/; expires=${cookieExpirationDate};`;
+    document.cookie = `${cookieName}=closed; path=/; expires=${cookieExpirationDate};`;
   });
 
   if (popupForm) {
@@ -105,7 +106,7 @@ const initInquiryEvents = () => {
                 popupModal.classList.add("inquiry-hidden");
               }
 
-              document.cookie = `inquiryIdentifier=${inquiryID}; path=/; expires=${cookieExpirationDate};`;
+              document.cookie = `${cookieName}=closed; path=/; expires=${cookieExpirationDate};`;
             } else {
               throw new Error("Data could not be saved!");
             }
@@ -121,8 +122,8 @@ const initInquiryEvents = () => {
 
   // Check cookie before displaying inquiry box
   // Prevents it from showing again in case the browser returns a cached version of the page (like when using back button)
-  const cookieIdentifier = document.cookie.split(";").find((row) => row.trim().startsWith("inquiryIdentifier="))?.split("=")[1];
-  if (testmode || cookieIdentifier !== inquiryID) {
+  const dismissed = document.cookie.split(";").some((row) => row.trim().startsWith(`${cookieName}=`));
+  if (testmode || !dismissed) {
     box.classList.remove("inquiry-hidden");
   }
 };

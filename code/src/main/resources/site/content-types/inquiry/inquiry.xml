@@ -1,0 +1,282 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<content-type>
+  <display-name i18n="inquiry.displayName">Inquiry</display-name>
+  <super-type>base:structured</super-type>
+  <is-abstract>false</is-abstract>
+  <is-final>true</is-final>
+  <allow-child-content>false</allow-child-content>
+  <form>
+    <input name="active" type="CheckBox">
+      <label i18n="site.active">Activate inquiry</label>
+      <help-text i18n="site.active-help">
+        Activate to display this inquiry. Visitors who close or submit it will not see it again.
+      </help-text>
+    </input>
+    <option-set name="targeting">
+      <label i18n="inquiry.targeting">Display inquiry on</label>
+      <occurrences minimum="1" maximum="1"/>
+      <options minimum="1" maximum="1">
+        <option name="allPages">
+          <label i18n="inquiry.targeting.allPages">All pages</label>
+          <default>true</default>
+        </option>
+        <option name="specificPages">
+          <label i18n="inquiry.targeting.specificPages">Specific pages</label>
+          <items>
+            <input name="pages" type="ContentSelector">
+              <label i18n="inquiry.targeting.pages">Pages</label>
+              <help-text i18n="inquiry.targeting.pages-help">Select the pages where this inquiry should appear. Child pages are not included automatically.</help-text>
+              <occurrences minimum="1" maximum="0"/>
+            </input>
+          </items>
+        </option>
+      </options>
+    </option-set>
+    <input name="theme" type="RadioButton">
+      <label i18n="site.theme">Color theme</label>
+      <help-text i18n="site.theme-help">
+        Choose a styling theme for the inquiry form.
+      </help-text>
+      <occurrences minimum="1" maximum="1"/>
+      <config>
+        <option value="light" i18n="site.theme.light">Light theme</option>
+        <option value="dark" i18n="site.theme.dark">Dark theme</option>
+        <option value="light-minimal" i18n="site.theme.light-minimal">Light minimal theme</option>
+        <option value="dark-minimal" i18n="site.theme.dark-minimal">Dark minimal theme</option>
+      </config>
+      <default>light</default>
+    </input>
+    <field-set name="box">
+      <label i18n="site.box">Inquiry box</label>
+      <items>
+        <input name="boxTitle" type="TextLine">
+          <label i18n="site.boxTitle">Title</label>
+          <help-text i18n="site.boxTitle-help">
+            Add a title to the initial inquiry box where a user can choose to proceed to the inquiry form. For example: Let us know what you think!
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+        </input>
+        <input name="boxText" type="HtmlArea">
+          <label i18n="site.boxText">Text</label>
+          <help-text i18n="site.boxText-help">
+            Add a descriptive text to the inquiry box. It will be displayed below the title.
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+        </input>
+        <input name="boxContinue" type="TextLine">
+          <label i18n="site.boxContinue">Button text</label>
+          <help-text i18n="site.boxContinue-help">
+            This is the button a user will click if they want to continue to the inquiry form. Add a fitting text to the button.
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+        </input>
+        <input name="boxPosition" type="RadioButton">
+          <label i18n="site.boxPosition">Position of box on screen</label>
+          <help-text i18n="site.boxPosition-help">
+            Decide where on the webpage the info box should be displayed.
+          </help-text>
+          <occurrences minimum="1" maximum="1"/>
+          <config>
+            <option value="topLeft" i18n="site.boxPosition.topLeft">Top left</option>
+            <option value="topRight" i18n="site.boxPosition.topRight">Top right</option>
+            <option value="bottomLeft" i18n="site.boxPosition.bottomLeft">Bottom left</option>
+            <option value="bottomRight" i18n="site.boxPosition.bottomRight">Bottom right</option>
+          </config>
+          <default>bottomRight</default>
+        </input>
+      </items>
+    </field-set>
+    <field-set name="popup">
+      <label i18n="site.popup">Popup form</label>
+      <items>
+        <input name="popupTitle" type="TextLine">
+          <label i18n="site.popupTitle">Title</label>
+          <help-text i18n="site.popupTitle-help">
+            Add a title to the inquiry form.
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+        </input>
+        <input name="popupText" type="HtmlArea">
+          <label i18n="site.popupText">Text</label>
+          <help-text i18n="site.popupText-help">
+            Add a describing info text about the inquiry form. The text is displayed below the title.
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+        </input>
+        <input name="popupSubmit" type="TextLine">
+          <label i18n="site.popupSubmit">Button text</label>
+          <help-text i18n="site.popupSubmit-help">
+            This is the button a user will click when they have completed the inquiry form and want to submit their reply. Add a fitting text to the button, for example: submit.
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+        </input>
+        <input name="popupResponseTitle" type="TextLine">
+          <label i18n="site.popupResponseTitle">Title after form submitted</label>
+          <help-text i18n="site.popupResponseTitle-help">
+            Add a title to display after the user has submitted their response. For example: Thank you for your reply.
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+        </input>
+        <input name="popupResponseText" type="HtmlArea">
+          <label i18n="site.popupResponseText">Text after form submitted</label>
+          <help-text i18n="site.popupResponseText-help">
+            Add some text to display after the user has submitted their response.
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+        </input>
+        <option-set name="popupQuestions">
+          <label i18n="site.popupQuestions">Questions</label>
+          <occurrences minimum="0" maximum="0"/>
+          <options minimum="1" maximum="1">
+            <option name="textlineAnswer">
+              <label i18n="site.textlineAnswer">Textline</label>
+              <items>
+                <input name="question" type="TextLine">
+                  <label i18n="site.question">Question</label>
+                  <help-text i18n="site.questionShort-help">
+                    Add a question that that requires a short answer, no more than one line.
+                  </help-text>
+                  <occurrences minimum="1" maximum="1"/>
+                </input>
+                <input name="required" type="CheckBox">
+                  <label i18n="site.required">Answer required</label>
+                  <help-text i18n="site.required-help">
+                    Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered.
+                  </help-text>
+                </input>
+                <input name="placeholder" type="TextLine">
+                  <label i18n="site.placeholder">Placeholder text</label>
+                  <occurrences minimum="0" maximum="1"/>
+                </input>
+              </items>
+            </option>
+            <option name="textareaAnswer">
+              <label i18n="site.textareaAnswer">Textarea</label>
+              <items>
+                <input name="question" type="TextLine">
+                  <label i18n="site.question">Question</label>
+                  <help-text i18n="site.questionLong-help">
+                    Add a question that that requires a longer answer, multiple lines.
+                  </help-text>
+                  <occurrences minimum="1" maximum="1"/>
+                </input>
+                <input name="required" type="CheckBox">
+                  <label i18n="site.required">Answer required</label>
+                  <help-text i18n="site.required-help">
+                    Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered.
+                  </help-text>
+                </input>
+                <input name="placeholder" type="TextLine">
+                  <label i18n="site.placeholder">Placeholder text</label>
+                  <occurrences minimum="0" maximum="1"/>
+                </input>
+              </items>
+            </option>
+            <option name="radiobuttonAnswer">
+              <label i18n="site.radiobuttonAnswer">Radiobuttons</label>
+              <items>
+                <input name="question" type="TextLine">
+                  <label i18n="site.question">Question</label>
+                  <help-text i18n="site.questionRadio-help">
+                    Add a multiple choice question that you want the user to answer. The user can select only one answer.
+                  </help-text>
+                  <occurrences minimum="0" maximum="1"/>
+                </input>
+                <input name="required" type="CheckBox">
+                  <label i18n="site.required">Answer required</label>
+                  <help-text i18n="site.required-help">
+                    Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered.
+                  </help-text>
+                </input>
+                <item-set name="answerOptions">
+                  <label i18n="site.answerOptions">Answers</label>
+                  <occurrences minimum="0" maximum="0"/>
+                  <items>
+                    <input name="text" type="TextLine">
+                      <label i18n="site.answerOptions.text">Answer</label>
+                      <occurrences minimum="0" maximum="1"/>
+                    </input>
+                    <input name="default" type="CheckBox">
+                      <label i18n="site.answerOptions.default">Selected by default</label>
+                    </input>
+                  </items>
+                </item-set>
+              </items>
+            </option>
+            <option name="checkboxAnswer">
+              <label i18n="site.checkboxAnswer">Checkboxes</label>
+              <items>
+                <input name="question" type="TextLine">
+                  <label i18n="site.question">Question</label>
+                  <help-text i18n="site.questionCheckbox-help">
+                    Add a multiple choice question that you want the user to answer. The user can select multiple answers.
+                  </help-text>
+                  <occurrences minimum="0" maximum="1"/>
+                </input>
+                <input name="required" type="CheckBox">
+                  <label i18n="site.required">Answer required</label>
+                  <help-text i18n="site.required-help">
+                    Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered.
+                  </help-text>
+                </input>
+                <item-set name="answerOptions">
+                  <label i18n="site.answerOptions">Answers</label>
+                  <occurrences minimum="0" maximum="0"/>
+                  <items>
+                    <input name="text" type="TextLine">
+                      <label i18n="site.answerOptions.text">Answer</label>
+                      <occurrences minimum="0" maximum="1"/>
+                    </input>
+                    <input name="default" type="CheckBox">
+                      <label i18n="site.answerOptions.default">Selected by default</label>
+                    </input>
+                  </items>
+                </item-set>
+              </items>
+            </option>
+          </options>
+        </option-set>
+      </items>
+    </field-set>
+    <field-set>
+      <label i18n="site.advancedOptions">Advanced settings</label>
+      <items>
+        <input name="testmode" type="CheckBox">
+          <label i18n="site.testmode">Enable test mode</label>
+          <help-text i18n="site.testmode-help">
+            Enable if you want to always show the inquiry box on every page load, even if you have closed or submitted the inquiry before. Only works in preview/edit mode. When you're testing the form, don't forget to delete your test replies via the Inquiry admin tool before activating it on the master branch.
+          </help-text>
+        </input>
+        <input name="fontSize" type="Long">
+          <label i18n="site.fontSize">Base font-size (px)</label>
+          <help-text i18n="site.fontSize-help">
+            By default the font-size will be inherited from the body. Use this field to set a base font-size manually if needed (enter value between 1 and 30).
+          </help-text>
+          <occurrences minimum="0" maximum="1" />
+          <config>
+            <min>1</min>
+            <max>30</max>
+          </config>
+        </input>
+        <input name="popupZindex" type="Long">
+          <label i18n="site.zindex.popup">Z-index</label>
+          <help-text i18n="site.zindex-help">
+            Manually set the z-index value here if you need to. By default a z-index value of 99999 will be used. Only use this field if you need to fix issues with other overlapping elements on your site. The element with highest z-index is displayed on top.
+          </help-text>
+          <config>
+            <max>999999999</max>
+          </config>
+        </input>
+        <input name="boxZindex" type="Long">
+          <label i18n="site.zindex.box">Z-index</label>
+          <help-text i18n="site.zindex-help">
+            Manually set the z-index value here if you need to. By default a z-index value of 99999 will be used. Only use this field if you need to fix issues with other overlapping elements on your site. The element with highest z-index is displayed on top.
+          </help-text>
+          <config>
+            <max>999999999</max>
+          </config>
+        </input>
+      </items>
+    </field-set>
+  </form>
+</content-type>

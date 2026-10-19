@@ -1,19 +1,22 @@
 const libs = {
   portal: require("/lib/xp/portal"),
+  content: require("/lib/xp/content"),
   repository: require("/lib/repository"),
   util: require("/lib/util")
 };
 
 exports.post = (req) => {
-  const config = libs.portal.getSiteConfig();
-  const identifier = config.identifier;
-  const questions = libs.util.forceArray(config.popupQuestions);
   const answers = req.params;
-  let savedAnswers = true;
+  const identifier = answers.inquiryIdentifier;
+  const inquiry = typeof identifier === "string" ? libs.content.get({ key: identifier }) : null;
+  const site = libs.portal.getSite();
+  const inquirySite = inquiry ? libs.content.getSite({ key: inquiry._id }) : null;
+  let savedAnswers = false;
 
   // Filter out bots by checking if honeypot input field is empty
-  // Also check if the identifier input field matches the identifier of currently active inquiry
-  if (!answers.inquiryBait && answers.inquiryIdentifier === identifier) {
+  if (!answers.inquiryBait && inquiry?.type === `${app.name}:inquiry`
+    && identifier === inquiry._id && inquiry.data.active && site && inquirySite?._id === site._id) {
+    const questions = libs.util.forceArray(inquiry.data.popupQuestions);
     delete answers.inquiryBait;
     delete answers.inquiryIdentifier;
 

@@ -1,5 +1,6 @@
 const libs = {
   portal: require("/lib/xp/portal"),
+  content: require("/lib/xp/content"),
   context: require("/lib/xp/context"),
   freemarker: require("/lib/tineikt/freemarker"),
   util: require("/lib/util"),
@@ -7,18 +8,53 @@ const libs = {
 };
 
 exports.responseProcessor = (req, res) => {
-  const config = libs.portal.getSiteConfig();
-  const cookieIdentifier = req.cookies?.inquiryIdentifier;
+  const site = libs.portal.getSite();
+  const page = libs.portal.getContent();
+  if (!site || !page) {
+    return res;
+  }
+
+  const inquiries = libs.content.query({
+    count: -1,
+    contentTypes: [`${app.name}:inquiry`],
+    query: {
+      boolean: {
+        must: [
+          { pathMatch: { field: "_path", path: `/content${site._path}`, minimumMatch: 1 } },
+          { term: { field: "data.active", value: true } }
+        ]
+      }
+    },
+    sort: "_path ASC"
+  }).hits;
+  let inquiry;
+  for (let index = 0; index < inquiries.length; index += 1) {
+    const item = inquiries[index];
+    const inquirySite = libs.content.getSite({ key: item._id });
+    const targeting = item.data.targeting;
+    const matchesPage = targeting?._selected === "allPages"
+      || (targeting?._selected === "specificPages" && libs.util.forceArray(targeting.specificPages?.pages).indexOf(page._id) !== -1);
+    const isTestmode = item.data.testmode && libs.context.get().branch === "draft";
+    if (inquirySite?._id === site._id && matchesPage
+      && (!req.cookies?.[`inquiry-${item._id}`] || isTestmode)) {
+      inquiry = item;
+      break;
+    }
+  }
+  if (!inquiry) {
+    return res;
+  }
+
+  const config = inquiry.data;
   const testmode = config.testmode && libs.context.get().branch === "draft";
 
-  // If visitor has already closed/submitted the currently active inquiry then don't display the inquiry again, unless testmode is on.
-  if (config.active && config.identifier && (config.identifier !== cookieIdentifier || testmode)) {
+  if (config.active) {
     const style = `<link rel="stylesheet" href="${libs.portal.assetUrl({ path: "css/main.css" })}">`;
     const scripts = `<script src="${libs.portal.assetUrl({ path: "js/main.js" })}" async></script>`;
 
     // Create body html
     const model = {};
-    model.identifier = config.identifier;
+    model.identifier = inquiry._id;
     model.testmode = testmode;
     model.theme = config.theme ? config.theme : "light";
     model.fontSize = config.fontSize ? config.fontSize.toString() : "";

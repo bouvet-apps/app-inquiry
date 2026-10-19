@@ -5,7 +5,7 @@ This Enonic XP application lets you create inquiry forms for your visitors. It w
 ## Installation
 ### Enonic Market
 
-You can install the app from the [Enonic Market](https://market.enonic.com), add it to your site via Content Studio and start configuring it.
+You can install the app from the [Enonic Market](https://market.enonic.com) and add it to your site via Content Studio. Create content of type **Inquiry** under the site to configure each inquiry.
 
 ### Build it yourself
 
@@ -13,9 +13,13 @@ If you wish to build it yourself, you can run the `make package` command in the 
 
 ## Notes
 
-While you can have only one inquiry active at a time, it is possible to create several different inquiries over time and display the responses for each of these in the admin tool. In order to correctly process, save and display all the created inquiries and it's responses, it is however important to use unique identifiers. When you first set up the app, the default inquiry ID will be set as `Inquiry-1`. This can be changed at any time. If the inquiry is active, all responses will be saved under the currently set inquiry ID. So if you wish to start a different inquiry, you can simply change the identifier to something new and unique.
+Each inquiry is configured as its own content item. Activate it, choose **All pages** or **Specific pages**, and publish it to display it on the live site. Specific page selections apply only to those pages, not their descendants. Inquiries are restricted to the site they belong to.
 
-The same principle applies to the questions as well, which all need to have some indentifier set (the selector can generate something for you). Once an inquiry is active and has started to collect responses, these IDs should not be changed anymore unless you wish to have it processed as a different question.
+Several inquiries can be active at the same time. If more than one matches a page, the first inquiry that has not been dismissed is shown in content-path order. After it is closed or submitted, another matching inquiry can appear on a later page load. Closing one inquiry does not dismiss the others.
+
+The content ID automatically identifies the inquiry and its responses. Editors do not need to enter unique identifiers. To start a new inquiry, create a new content item. Question IDs are generated automatically when the inquiry is saved and retained when it is edited.
+
+When upgrading from site-config inquiries, recreate the configuration as Inquiry content before publishing. Site-config inquiries are no longer displayed. Previously collected responses remain available in the admin tool under their original identifiers; new responses are stored separately under the new content ID.
 
 ## Developers
 To get info about development, see [development documentation](code/src/docs/en/development.md).
