@@ -1,4 +1,5 @@
-<div id="inquiry-box" data-identifier="${identifier}" data-testmode="${testmode?c}" class="inquiry-box inquiry-box--${boxPosition} inquiry-box--${theme} inquiry-hidden" style="${(boxZindex?has_content)?then('z-index: ${boxZindex};', '')}${(fontSize?has_content)?then('font-size: ${fontSize}px;', '')}">
+<div class="inquiry-instance" data-identifier="${identifier}" data-testmode="${testmode?c}">
+<div id="inquiry-box" class="inquiry-box inquiry-box--${boxPosition} inquiry-box--${theme} inquiry-hidden" style="${(boxZindex?has_content)?then('z-index: ${boxZindex};', '')}${(fontSize?has_content)?then('font-size: ${fontSize}px;', '')}">
   <div class="inquiry-box__wrapper">
     [#if (boxTitle?has_content)]
       <div class="inquiry-box__title">
@@ -37,23 +38,23 @@
           </div>
           [#list popupQuestions as popupQuestion]
             [#if (popupQuestion._selected == "textlineAnswer" && popupQuestion.textlineAnswer.id?has_content)]
-              <label for="answer-${popupQuestion.textlineAnswer.id}" class="inquiry-popup__questions__question">
+              <label for="${identifier}-answer-${popupQuestion.textlineAnswer.id}" class="inquiry-popup__questions__question">
                 ${popupQuestion.textlineAnswer.question!''}
               </label>
-              <input type="text" maxlength="50" id="answer-${popupQuestion.textlineAnswer.id}" name="${popupQuestion.textlineAnswer.id}" ${popupQuestion.textlineAnswer.required?then('required', '')} ${(popupQuestion.textlineAnswer.placeholder?has_content)?then('placeholder="${popupQuestion.textlineAnswer.placeholder}"', '')}>
+              <input type="text" maxlength="50" id="${identifier}-answer-${popupQuestion.textlineAnswer.id}" name="${popupQuestion.textlineAnswer.id}" ${popupQuestion.textlineAnswer.required?then('required', '')} ${(popupQuestion.textlineAnswer.placeholder?has_content)?then('placeholder="${popupQuestion.textlineAnswer.placeholder}"', '')}>
             [#elseif (popupQuestion._selected == "textareaAnswer" && popupQuestion.textareaAnswer.id?has_content)]
-              <label for="answer-${popupQuestion.textareaAnswer.id}" class="inquiry-popup__questions__question">
+              <label for="${identifier}-answer-${popupQuestion.textareaAnswer.id}" class="inquiry-popup__questions__question">
                 ${popupQuestion.textareaAnswer.question!''}
               </label>
-              <textarea maxlength="500" id="answer-${popupQuestion.textareaAnswer.id}" name="${popupQuestion.textareaAnswer.id}" ${popupQuestion.textareaAnswer.required?then('required', '')} ${(popupQuestion.textareaAnswer.placeholder?has_content)?then('placeholder="${popupQuestion.textareaAnswer.placeholder}"', '')}></textarea>
+              <textarea maxlength="500" id="${identifier}-answer-${popupQuestion.textareaAnswer.id}" name="${popupQuestion.textareaAnswer.id}" ${popupQuestion.textareaAnswer.required?then('required', '')} ${(popupQuestion.textareaAnswer.placeholder?has_content)?then('placeholder="${popupQuestion.textareaAnswer.placeholder}"', '')}></textarea>
             [#elseif (popupQuestion._selected == "radiobuttonAnswer" && popupQuestion.radiobuttonAnswer.id?has_content)]
               <div class="inquiry-popup__questions__question">
                 ${popupQuestion.radiobuttonAnswer.question!''}
               </div>
               [#list popupQuestion.radiobuttonAnswer.answerOptions as answerOption]
                 <div class="inquiry-popup__questions__answer">
-                  <input type="radio" id="answer-${popupQuestion.radiobuttonAnswer.id}${answerOption?counter}" name="${popupQuestion.radiobuttonAnswer.id}" value="${answerOption.text!''}" ${popupQuestion.radiobuttonAnswer.required?then('required', '')} ${answerOption.default?then('checked', '')}>
-                  <label for="answer-${popupQuestion.radiobuttonAnswer.id}${answerOption?counter}">${answerOption.text!''}</label>
+                  <input type="radio" id="${identifier}-answer-${popupQuestion.radiobuttonAnswer.id}${answerOption?counter}" name="${popupQuestion.radiobuttonAnswer.id}" value="${answerOption.text!''}" ${popupQuestion.radiobuttonAnswer.required?then('required', '')} ${answerOption.default?then('checked', '')}>
+                  <label for="${identifier}-answer-${popupQuestion.radiobuttonAnswer.id}${answerOption?counter}">${answerOption.text!''}</label>
                 </div>
               [/#list]
             [#elseif (popupQuestion._selected == "checkboxAnswer" && popupQuestion.checkboxAnswer.id?has_content)]
@@ -62,8 +63,8 @@
               </div>
               [#list popupQuestion.checkboxAnswer.answerOptions as answerOption]
                 <div class="inquiry-popup__questions__answer">
-                  <input type="checkbox" id="answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}" name="${popupQuestion.checkboxAnswer.id}" value="${answerOption.text!''}" ${popupQuestion.checkboxAnswer.required?then('required', '')} ${answerOption.default?then('checked', '')}>
-                  <label for="answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}">${answerOption.text!''}</label>
+                  <input type="checkbox" id="${identifier}-answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}" name="${popupQuestion.checkboxAnswer.id}" value="${answerOption.text!''}" ${popupQuestion.checkboxAnswer.required?then('required', '')} ${answerOption.default?then('checked', '')}>
+                  <label for="${identifier}-answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}">${answerOption.text!''}</label>
                 </div>
               [/#list]
             [/#if]
@@ -91,4 +92,5 @@
     [/#if]
     <button id="inquiry-popup-close" class="inquiry-popup__close" title="${titleClose}" aria-label="${titleClose}">&#10006;</button>
   </div>
+</div>
 </div>

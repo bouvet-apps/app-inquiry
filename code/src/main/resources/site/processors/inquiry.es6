@@ -27,7 +27,7 @@ exports.responseProcessor = (req, res) => {
     },
     sort: "_path ASC"
   }).hits;
-  let inquiry;
+  const matchingInquiries = [];
   for (let index = 0; index < inquiries.length; index += 1) {
     const item = inquiries[index];
     const inquirySite = libs.content.getSite({ key: item._id });
@@ -37,20 +37,27 @@ exports.responseProcessor = (req, res) => {
     const isTestmode = item.data.testmode && libs.context.get().branch === "draft";
     if (inquirySite?._id === site._id && matchesPage
       && (!req.cookies?.[`inquiry-${item._id}`] || isTestmode)) {
-      inquiry = item;
-      break;
+      matchingInquiries.push(item);
     }
   }
-  if (!inquiry) {
+  matchingInquiries.sort((first, second) => Number(second.data.targeting?._selected === "allPages")
+    - Number(first.data.targeting?._selected === "allPages"));
+  if (matchingInquiries.length === 0) {
     return res;
   }
 
-  const config = inquiry.data;
-  const testmode = config.testmode && libs.context.get().branch === "draft";
+  // Check if contribution fields exists, if not create them
+  if (!res.pageContributions.bodyEnd) {
+    res.pageContributions.bodyEnd = [];
+  }
+  if (!res.pageContributions.headEnd) {
+    res.pageContributions.headEnd = [];
+  }
 
-  if (config.active) {
-    const style = `<link rel="stylesheet" href="${libs.portal.assetUrl({ path: "css/main.css" })}">`;
-    const scripts = `<script src="${libs.portal.assetUrl({ path: "js/main.js" })}" async></script>`;
+  for (let index = 0; index < matchingInquiries.length; index += 1) {
+    const inquiry = matchingInquiries[index];
+    const config = inquiry.data;
+    const testmode = config.testmode && libs.context.get().branch === "draft";
 
     // Create body html
     const model = {};
@@ -82,23 +89,14 @@ exports.responseProcessor = (req, res) => {
 
     const view = resolve("/views/inquiry.ftl");
     const body = libs.freemarker.render(view, model);
-
-    // Check if contribution fields exists, if not create it
-    const bodyEnd = res.pageContributions.bodyEnd;
-    if (!bodyEnd) {
-      res.pageContributions.bodyEnd = [];
-    }
-
-    const headEnd = res.pageContributions.headEnd;
-    if (!headEnd) {
-      res.pageContributions.headEnd = [];
-    }
-
-    // Add contributions
     res.pageContributions.bodyEnd.push(body);
-    res.pageContributions.bodyEnd.push(scripts);
-    res.pageContributions.headEnd.push(style);
   }
+
+  // Add shared assets once for all matching inquiries
+  const style = `<link rel="stylesheet" href="${libs.portal.assetUrl({ path: "css/main.css" })}">`;
+  const scripts = `<script src="${libs.portal.assetUrl({ path: "js/main.js" })}" async></script>`;
+  res.pageContributions.bodyEnd.push(scripts);
+  res.pageContributions.headEnd.push(style);
 
   return res;
 };
