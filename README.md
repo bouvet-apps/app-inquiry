@@ -15,7 +15,7 @@ If you wish to build it yourself, you can run the `make package` command in the 
 
 Each inquiry is configured as its own content item. Activate it, choose **All pages** or **Specific pages**, and publish it to display it on the live site. Specific page selections apply only to those pages, not their descendants. Inquiries are restricted to the site they belong to.
 
-Several inquiries can be active at the same time. If more than one matches a page, the first inquiry that has not been dismissed is shown in content-path order. After it is closed or submitted, another matching inquiry can appear on a later page load. Closing one inquiry does not dismiss the others.
+Several inquiries can be active at the same time. If more than one matches a page, the first inquiry that has not been dismissed is shown in content-path order. When it is closed, the next matching inquiry appears immediately, without a page reload. After submission, the next inquiry appears when the thank-you message is closed, or immediately if no thank-you message is configured. Closing one inquiry does not dismiss the others.
 
 The content ID automatically identifies the inquiry and its responses. Editors do not need to enter unique identifiers. To start a new inquiry, create a new content item. Question IDs are generated automatically when the inquiry is saved and retained when it is edited.
 
