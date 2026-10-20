@@ -83,6 +83,18 @@ const initInquiry = (instance, showNextInquiry) => {
   });
 
   if (popupForm) {
+    const requiredCheckboxes = popupForm.querySelectorAll("input[type=checkbox][data-required='true']");
+    requiredCheckboxes.forEach((requiredCheckbox) => {
+      const checkboxGroup = popupForm.querySelectorAll(`input[type=checkbox][name='${requiredCheckbox.name}']`);
+      const updateCheckboxValidity = () => {
+        const hasSelection = Array.from(checkboxGroup).some((checkbox) => checkbox.checked);
+        requiredCheckbox.setCustomValidity(hasSelection ? "" : requiredCheckbox.dataset.requiredMessage);
+      };
+
+      checkboxGroup.forEach((checkbox) => checkbox.addEventListener("change", updateCheckboxValidity));
+      updateCheckboxValidity();
+    });
+
     popupForm.addEventListener("submit", (event) => {
       event.preventDefault();
 

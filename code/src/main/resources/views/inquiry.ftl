@@ -63,7 +63,7 @@
               </div>
               [#list popupQuestion.checkboxAnswer.answerOptions as answerOption]
                 <div class="inquiry-popup__questions__answer">
-                  <input type="checkbox" id="${identifier}-answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}" name="${popupQuestion.checkboxAnswer.id}" value="${answerOption.text!''}" ${popupQuestion.checkboxAnswer.required?then('required', '')} ${answerOption.default?then('checked', '')}>
+                  <input type="checkbox" id="${identifier}-answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}" name="${popupQuestion.checkboxAnswer.id}" value="${answerOption.text!''}" ${(popupQuestion.checkboxAnswer.required && answerOption?counter == 1)?then('data-required="true" data-required-message="${checkboxRequired}"', '')} ${answerOption.default?then('checked', '')}>
                   <label for="${identifier}-answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}">${answerOption.text!''}</label>
                 </div>
               [/#list]

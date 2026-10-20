@@ -86,6 +86,7 @@ exports.responseProcessor = (req, res) => {
     model.inquiryServiceUrl = libs.portal.serviceUrl({ service: "inquiry" });
     model.titleClose = libs.i18n.localize({ key: "close" });
     model.submitError = libs.i18n.localize({ key: "submiterror" });
+    model.checkboxRequired = libs.i18n.localize({ key: "site.checkbox-required" });
 
     const view = resolve("/views/inquiry.ftl");
     const body = libs.freemarker.render(view, model);
