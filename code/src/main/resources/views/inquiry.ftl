@@ -1,5 +1,5 @@
 <div class="inquiry-instance" data-identifier="${identifier}" data-testmode="${testmode?c}">
-<div id="inquiry-box" class="inquiry-box inquiry-box--${boxPosition} inquiry-box--${theme} inquiry-hidden" style="${(boxZindex?has_content)?then('z-index: ${boxZindex};', '')}${(fontSize?has_content)?then('font-size: ${fontSize}px;', '')}">
+<div id="${identifier}-inquiry-box" class="inquiry-box inquiry-box--${boxPosition} inquiry-box--${theme} inquiry-hidden" style="${(boxZindex?has_content)?then('z-index: ${boxZindex};', '')}${(fontSize?has_content)?then('font-size: ${fontSize}px;', '')}">
   <div class="inquiry-box__wrapper">
     [#if (boxTitle?has_content)]
       <div class="inquiry-box__title">
@@ -12,15 +12,15 @@
       </div>
     [/#if]
     [#if (boxContinue?has_content)]
-      <button id="inquiry-box-continue" class="${theme?contains('minimal')?then('button', 'inquiry-box__continue')}" aria-haspopup="dialog">${boxContinue}</button>
+      <button id="${identifier}-inquiry-box-continue" class="${theme?contains('minimal')?then('button', 'inquiry-box__continue')}" aria-haspopup="dialog">${boxContinue}</button>
     [/#if]
   </div>
-  <button id="inquiry-box-close" class="inquiry-box__close" title="${titleClose}" aria-label="${titleClose}">&#10006;</button>
+  <button id="${identifier}-inquiry-box-close" class="inquiry-box__close" title="${titleClose}" aria-label="${titleClose}">&#10006;</button>
 </div>
 
-<div id="inquiry-popupmodal" class="inquiry-popupmodal inquiry-hidden" style="${(popupZindex?has_content)?then('z-index: ${popupZindex};', '')}${(fontSize?has_content)?then('font-size: ${fontSize}px;', '')}">
+<div id="${identifier}-inquiry-popupmodal" class="inquiry-popupmodal inquiry-hidden" style="${(popupZindex?has_content)?then('z-index: ${popupZindex};', '')}${(fontSize?has_content)?then('font-size: ${fontSize}px;', '')}">
   <div class="inquiry-popup inquiry-popup--${theme}" role="dialog" aria-modal="true">
-    <div id="inquiry-popup-questions" class="inquiry-popup__questions">
+    <div id="${identifier}-inquiry-popup-questions" class="inquiry-popup__questions">
       [#if (popupTitle?has_content)]
         <div class="inquiry-popup__title">
           ${popupTitle}
@@ -32,7 +32,7 @@
         </div>
       [/#if]
       [#if (popupQuestions?? && popupQuestions?has_content)]
-        <form id="inquiry-popup-form" method="post" action="${inquiryServiceUrl}" autocomplete="off">
+        <form id="${identifier}-inquiry-popup-form" method="post" action="${inquiryServiceUrl}" autocomplete="off">
           <div class="inquiry-hidden">
             <input type="text" name="inquiryBait">
           </div>
@@ -69,15 +69,15 @@
               [/#list]
             [/#if]
           [/#list]
-          <button id="inquiry-popup-finish" type="submit" class="${theme?contains('minimal')?then('button', 'inquiry-popup__finish')}">${popupSubmit}</button>
+          <button id="${identifier}-inquiry-popup-finish" type="submit" class="${theme?contains('minimal')?then('button', 'inquiry-popup__finish')}">${popupSubmit}</button>
         </form>
-        <div id="inquiry-popup-error" class="inquiry-popup__error inquiry-hidden">
+        <div id="${identifier}-inquiry-popup-error" class="inquiry-popup__error inquiry-hidden">
           ${submitError}
         </div>
       [/#if]
     </div>
     [#if popupResponseTitle?has_content || popupResponseText?has_content]
-      <div id="inquiry-popup-response" class="inquiry-popup__response inquiry-hidden">
+      <div id="${identifier}-inquiry-popup-response" class="inquiry-popup__response inquiry-hidden">
         [#if (popupResponseTitle?has_content)]
           <div class="inquiry-popup__title">
               ${popupResponseTitle}
@@ -90,7 +90,7 @@
         [/#if]
       </div>
     [/#if]
-    <button id="inquiry-popup-close" class="inquiry-popup__close" title="${titleClose}" aria-label="${titleClose}">&#10006;</button>
+    <button id="${identifier}-inquiry-popup-close" class="inquiry-popup__close" title="${titleClose}" aria-label="${titleClose}">&#10006;</button>
   </div>
 </div>
 </div>

@@ -8,23 +8,23 @@ require.context("../images/", true, /\.(svg|gif|png|jp?g|webp)/i, "lazy");
 /* eslint-env browser */
 
 const initInquiry = (instance, showNextInquiry) => {
+  const inquiryID = instance.dataset.identifier;
   // Get elements
-  const box = instance.querySelector("#inquiry-box");
-  const boxClose = instance.querySelector("#inquiry-box-close");
-  const boxContinue = instance.querySelector("#inquiry-box-continue");
-  const popupModal = instance.querySelector("#inquiry-popupmodal");
-  const popupClose = instance.querySelector("#inquiry-popup-close");
-  const popupQuestions = instance.querySelector("#inquiry-popup-questions");
-  const popupResponse = instance.querySelector("#inquiry-popup-response");
-  const popupError = instance.querySelector("#inquiry-popup-error");
-  const popupForm = instance.querySelector("#inquiry-popup-form");
+  const box = instance.querySelector(`[id="${inquiryID}-inquiry-box"]`);
+  const boxClose = instance.querySelector(`[id="${inquiryID}-inquiry-box-close"]`);
+  const boxContinue = instance.querySelector(`[id="${inquiryID}-inquiry-box-continue"]`);
+  const popupModal = instance.querySelector(`[id="${inquiryID}-inquiry-popupmodal"]`);
+  const popupClose = instance.querySelector(`[id="${inquiryID}-inquiry-popup-close"]`);
+  const popupQuestions = instance.querySelector(`[id="${inquiryID}-inquiry-popup-questions"]`);
+  const popupResponse = instance.querySelector(`[id="${inquiryID}-inquiry-popup-response"]`);
+  const popupError = instance.querySelector(`[id="${inquiryID}-inquiry-popup-error"]`);
+  const popupForm = instance.querySelector(`[id="${inquiryID}-inquiry-popup-form"]`);
   const focusableElements = "button, [href], input:not([name=\"inquiryBait\"]), select, textarea, [tabindex]:not([tabindex=\"-1\"])";
   const focusableContent = popupModal.querySelectorAll(focusableElements);
 
   // Set variables
   const dateToday = new Date();
   const cookieExpirationDate = new Date(dateToday.getFullYear() + 1, dateToday.getMonth() + 1).toUTCString();
-  const inquiryID = instance.dataset.identifier;
   const cookieName = `inquiry-${inquiryID}`;
   let enableSubmit = true;
 
