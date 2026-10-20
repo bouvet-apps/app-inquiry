@@ -18,7 +18,6 @@
       <options minimum="1" maximum="1">
         <option name="allPages">
           <label i18n="inquiry.targeting.allPages">All pages</label>
-          <default>true</default>
         </option>
         <option name="specificPages">
           <label i18n="inquiry.targeting.specificPages">Specific pages</label>
