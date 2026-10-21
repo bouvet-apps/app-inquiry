@@ -11,12 +11,29 @@ exports.post = (req) => {
   const inquiry = typeof identifier === "string" ? libs.content.get({ key: identifier }) : null;
   const site = libs.portal.getSite();
   const inquirySite = inquiry ? libs.content.getSite({ key: inquiry._id }) : null;
+  const questions = inquiry ? libs.util.forceArray(inquiry.data.popupQuestions) : [];
+  const hasRequiredAnswers = questions.every((question) => {
+    const questionType = question._selected;
+    const questionConfig = question[questionType];
+    if (!questionConfig || !questionConfig.required) {
+      return true;
+    }
+
+    const answer = answers[questionConfig.id];
+    const answerValues = Array.isArray(answer) ? answer : [answer];
+    if (questionType === "checkboxAnswer" || questionType === "radiobuttonAnswer") {
+      const answerOptions = libs.util.forceArray(questionConfig.answerOptions);
+      return answerValues.length > 0 && answerValues.every((value) => answerOptions.some((option) => option.text === value));
+    }
+
+    return answerValues.some((value) => typeof value === "string" && value.trim().length > 0);
+  });
   let savedAnswers = false;
 
   // Filter out bots by checking if honeypot input field is empty
   if (!answers.inquiryBait && inquiry?.type === `${app.name}:inquiry`
-    && identifier === inquiry._id && inquiry.data.active && site && inquirySite?._id === site._id) {
-    const questions = libs.util.forceArray(inquiry.data.popupQuestions);
+    && identifier === inquiry._id && inquiry.data.active && site && inquirySite?._id === site._id
+    && hasRequiredAnswers) {
     delete answers.inquiryBait;
     delete answers.inquiryIdentifier;
 

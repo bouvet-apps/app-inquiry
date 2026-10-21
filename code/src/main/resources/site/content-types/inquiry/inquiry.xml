@@ -189,7 +189,7 @@
                 </input>
                 <item-set name="answerOptions">
                   <label i18n="site.answerOptions">Answers</label>
-                  <occurrences minimum="0" maximum="0"/>
+                  <occurrences minimum="1" maximum="0"/>
                   <items>
                     <input name="text" type="TextLine">
                       <label i18n="site.answerOptions.text">Answer</label>
