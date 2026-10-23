@@ -104,7 +104,7 @@ exports.get = (req) => {
 
     allInquiries.forEach((inquiry) => {
       inquiryList.push({
-        name: inquiry._name,
+        name: inquiry.displayName || inquiry._name,
         id: inquiry._id,
         count: libs.repository.getChildrenCount(inquiry._id),
         displayed: inquiry._id === displayedInquiryId,

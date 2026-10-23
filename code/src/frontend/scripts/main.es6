@@ -7,25 +7,25 @@ require.context("../images/", true, /\.(svg|gif|png|jp?g|webp)/i, "lazy");
 
 /* eslint-env browser */
 
-const initInquiryEvents = () => {
+const initInquiry = (instance, showNextInquiry) => {
+  const inquiryID = instance.dataset.identifier;
   // Get elements
-  const box = document.getElementById("inquiry-box");
-  const boxClose = document.getElementById("inquiry-box-close");
-  const boxContinue = document.getElementById("inquiry-box-continue");
-  const popupModal = document.getElementById("inquiry-popupmodal");
-  const popupClose = document.getElementById("inquiry-popup-close");
-  const popupQuestions = document.getElementById("inquiry-popup-questions");
-  const popupResponse = document.getElementById("inquiry-popup-response");
-  const popupError = document.getElementById("inquiry-popup-error");
-  const popupForm = document.getElementById("inquiry-popup-form");
+  const box = instance.querySelector(`[id="${inquiryID}-inquiry-box"]`);
+  const boxClose = instance.querySelector(`[id="${inquiryID}-inquiry-box-close"]`);
+  const boxContinue = instance.querySelector(`[id="${inquiryID}-inquiry-box-continue"]`);
+  const popupModal = instance.querySelector(`[id="${inquiryID}-inquiry-popupmodal"]`);
+  const popupClose = instance.querySelector(`[id="${inquiryID}-inquiry-popup-close"]`);
+  const popupQuestions = instance.querySelector(`[id="${inquiryID}-inquiry-popup-questions"]`);
+  const popupResponse = instance.querySelector(`[id="${inquiryID}-inquiry-popup-response"]`);
+  const popupError = instance.querySelector(`[id="${inquiryID}-inquiry-popup-error"]`);
+  const popupForm = instance.querySelector(`[id="${inquiryID}-inquiry-popup-form"]`);
   const focusableElements = "button, [href], input:not([name=\"inquiryBait\"]), select, textarea, [tabindex]:not([tabindex=\"-1\"])";
   const focusableContent = popupModal.querySelectorAll(focusableElements);
 
   // Set variables
   const dateToday = new Date();
   const cookieExpirationDate = new Date(dateToday.getFullYear() + 1, dateToday.getMonth() + 1).toUTCString();
-  const inquiryID = box.dataset.identifier;
-  const testmode = box.dataset.testmode;
+  const cookieName = `inquiry-${inquiryID}`;
   let enableSubmit = true;
 
   // Bind click/submit events
@@ -34,7 +34,9 @@ const initInquiryEvents = () => {
       if (event.key === "Escape") {
         // Close popupmodal on escape press
         popupModal.classList.add("inquiry-hidden");
-        document.cookie = `inquiryIdentifier=${inquiryID}; path=/; expires=${cookieExpirationDate};`;
+        document.cookie = `${cookieName}=closed; path=/; expires=${cookieExpirationDate};`;
+        window.removeEventListener("keydown", inquiryKeyboardHandler);
+        showNextInquiry();
       } else if (event.key === "Tab") {
         // Loop the focus within the modal when pressing tab
         if (focusableContent.length > 0) {
@@ -57,7 +59,8 @@ const initInquiryEvents = () => {
 
   boxClose.addEventListener("click", () => {
     box.classList.add("inquiry-hidden");
-    document.cookie = `inquiryIdentifier=${inquiryID}; path=/; expires=${cookieExpirationDate};`;
+    document.cookie = `${cookieName}=closed; path=/; expires=${cookieExpirationDate};`;
+    showNextInquiry();
   });
 
   if (boxContinue) {
@@ -68,16 +71,30 @@ const initInquiryEvents = () => {
       if (focusableContent.length > 0) {
         focusableContent[0].focus();
       }
-      document.addEventListener("keydown", inquiryKeyboardHandler);
+      window.addEventListener("keydown", inquiryKeyboardHandler);
     });
   }
 
   popupClose.addEventListener("click", () => {
     popupModal.classList.add("inquiry-hidden");
-    document.cookie = `inquiryIdentifier=${inquiryID}; path=/; expires=${cookieExpirationDate};`;
+    document.cookie = `${cookieName}=closed; path=/; expires=${cookieExpirationDate};`;
+    window.removeEventListener("keydown", inquiryKeyboardHandler);
+    showNextInquiry();
   });
 
   if (popupForm) {
+    const requiredCheckboxes = popupForm.querySelectorAll("input[type=checkbox][data-required='true']");
+    requiredCheckboxes.forEach((requiredCheckbox) => {
+      const checkboxGroup = popupForm.querySelectorAll(`input[type=checkbox][name='${requiredCheckbox.name}']`);
+      const updateCheckboxValidity = () => {
+        const hasSelection = Array.from(checkboxGroup).some((checkbox) => checkbox.checked);
+        requiredCheckbox.setCustomValidity(hasSelection ? "" : requiredCheckbox.dataset.requiredMessage);
+      };
+
+      checkboxGroup.forEach((checkbox) => checkbox.addEventListener("change", updateCheckboxValidity));
+      updateCheckboxValidity();
+    });
+
     popupForm.addEventListener("submit", (event) => {
       event.preventDefault();
 
@@ -103,9 +120,11 @@ const initInquiryEvents = () => {
                 popupResponse.classList.remove("inquiry-hidden");
               } else {
                 popupModal.classList.add("inquiry-hidden");
+                window.removeEventListener("keydown", inquiryKeyboardHandler);
+                showNextInquiry();
               }
 
-              document.cookie = `inquiryIdentifier=${inquiryID}; path=/; expires=${cookieExpirationDate};`;
+              document.cookie = `${cookieName}=closed; path=/; expires=${cookieExpirationDate};`;
             } else {
               throw new Error("Data could not be saved!");
             }
@@ -119,12 +138,27 @@ const initInquiryEvents = () => {
     });
   }
 
-  // Check cookie before displaying inquiry box
-  // Prevents it from showing again in case the browser returns a cached version of the page (like when using back button)
-  const cookieIdentifier = document.cookie.split(";").find((row) => row.trim().startsWith("inquiryIdentifier="))?.split("=")[1];
-  if (testmode || cookieIdentifier !== inquiryID) {
-    box.classList.remove("inquiry-hidden");
-  }
+  box.classList.remove("inquiry-hidden");
+};
+
+const initInquiryEvents = () => {
+  const inquiries = document.querySelectorAll(".inquiry-instance");
+  let nextInquiryIndex = 0;
+
+  const showNextInquiry = () => {
+    while (nextInquiryIndex < inquiries.length) {
+      const instance = inquiries[nextInquiryIndex];
+      nextInquiryIndex += 1;
+      const cookieName = `inquiry-${instance.dataset.identifier}`;
+      const dismissed = document.cookie.split(";").some((row) => row.trim().startsWith(`${cookieName}=`));
+      if (instance.dataset.testmode === "true" || !dismissed) {
+        initInquiry(instance, showNextInquiry);
+        return;
+      }
+    }
+  };
+
+  showNextInquiry();
 };
 
 if (document.readyState !== "loading") {
