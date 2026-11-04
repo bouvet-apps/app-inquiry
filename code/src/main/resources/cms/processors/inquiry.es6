@@ -2,7 +2,7 @@ const libs = {
   portal: require("/lib/xp/portal"),
   content: require("/lib/xp/content"),
   context: require("/lib/xp/context"),
-  freemarker: require("/lib/tineikt/freemarker"),
+  freemarker: require("/lib/freemarker"),
   util: require("/lib/util"),
   i18n: require("/lib/xp/i18n")
 };

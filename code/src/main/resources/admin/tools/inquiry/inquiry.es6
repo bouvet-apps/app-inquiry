@@ -1,5 +1,5 @@
 const libs = {
-  freemarker: require("/lib/tineikt/freemarker"),
+  freemarker: require("/lib/freemarker"),
   portal: require("/lib/xp/portal"),
   admin: require("/lib/xp/admin"),
   repository: require("/lib/repository"),
@@ -187,8 +187,7 @@ exports.get = (req) => {
     urlCss: libs.portal.assetUrl({ path: "css/admintool.css" }),
     inquiryList: inquiryList,
     displayedInquiry: displayedInquiry.length > 0 ? displayedInquiry[0] : null,
-    chartItems: chartItems,
-    locale: libs.admin.getLocale() ?? "en"
+    chartItems: chartItems
   };
 
   const view = resolve("./inquiry.ftl");
