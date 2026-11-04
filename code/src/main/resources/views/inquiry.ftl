@@ -40,19 +40,19 @@
               <label for="answer-${popupQuestion.textlineAnswer.id}" class="inquiry-popup__questions__question">
                 ${popupQuestion.textlineAnswer.question!''}
               </label>
-              <input type="text" maxlength="50" id="answer-${popupQuestion.textlineAnswer.id}" name="${popupQuestion.textlineAnswer.id}" ${popupQuestion.textlineAnswer.required?then('required', '')} ${(popupQuestion.textlineAnswer.placeholder?has_content)?then('placeholder="${popupQuestion.textlineAnswer.placeholder}"', '')}>
+              <input type="text" maxlength="50" id="answer-${popupQuestion.textlineAnswer.id}" name="${popupQuestion.textlineAnswer.id}" ${((popupQuestion.textlineAnswer.required)!false)?then('required', '')} ${(popupQuestion.textlineAnswer.placeholder?has_content)?then('placeholder="${popupQuestion.textlineAnswer.placeholder}"', '')}>
             [#elseif (popupQuestion._selected == "textareaAnswer" && popupQuestion.textareaAnswer.id?has_content)]
               <label for="answer-${popupQuestion.textareaAnswer.id}" class="inquiry-popup__questions__question">
                 ${popupQuestion.textareaAnswer.question!''}
               </label>
-              <textarea maxlength="500" id="answer-${popupQuestion.textareaAnswer.id}" name="${popupQuestion.textareaAnswer.id}" ${popupQuestion.textareaAnswer.required?then('required', '')} ${(popupQuestion.textareaAnswer.placeholder?has_content)?then('placeholder="${popupQuestion.textareaAnswer.placeholder}"', '')}></textarea>
+              <textarea maxlength="500" id="answer-${popupQuestion.textareaAnswer.id}" name="${popupQuestion.textareaAnswer.id}" ${((popupQuestion.textareaAnswer.required)!false)?then('required', '')} ${(popupQuestion.textareaAnswer.placeholder?has_content)?then('placeholder="${popupQuestion.textareaAnswer.placeholder}"', '')}></textarea>
             [#elseif (popupQuestion._selected == "radiobuttonAnswer" && popupQuestion.radiobuttonAnswer.id?has_content)]
               <div class="inquiry-popup__questions__question">
                 ${popupQuestion.radiobuttonAnswer.question!''}
               </div>
               [#list popupQuestion.radiobuttonAnswer.answerOptions as answerOption]
                 <div class="inquiry-popup__questions__answer">
-                  <input type="radio" id="answer-${popupQuestion.radiobuttonAnswer.id}${answerOption?counter}" name="${popupQuestion.radiobuttonAnswer.id}" value="${answerOption.text!''}" ${popupQuestion.radiobuttonAnswer.required?then('required', '')} ${answerOption.default?then('checked', '')}>
+                  <input type="radio" id="answer-${popupQuestion.radiobuttonAnswer.id}${answerOption?counter}" name="${popupQuestion.radiobuttonAnswer.id}" value="${answerOption.text!''}" ${((popupQuestion.radiobuttonAnswer.required)!false)?then('required', '')} ${((answerOption.default)!false)?then('checked', '')}>
                   <label for="answer-${popupQuestion.radiobuttonAnswer.id}${answerOption?counter}">${answerOption.text!''}</label>
                 </div>
               [/#list]
@@ -62,7 +62,7 @@
               </div>
               [#list popupQuestion.checkboxAnswer.answerOptions as answerOption]
                 <div class="inquiry-popup__questions__answer">
-                  <input type="checkbox" id="answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}" name="${popupQuestion.checkboxAnswer.id}" value="${answerOption.text!''}" ${popupQuestion.checkboxAnswer.required?then('required', '')} ${answerOption.default?then('checked', '')}>
+                  <input type="checkbox" id="answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}" name="${popupQuestion.checkboxAnswer.id}" value="${answerOption.text!''}" ${((popupQuestion.checkboxAnswer.required)!false)?then('required', '')} ${((answerOption.default)!false)?then('checked', '')}>
                   <label for="answer-${popupQuestion.checkboxAnswer.id}${answerOption?counter}">${answerOption.text!''}</label>
                 </div>
               [/#list]

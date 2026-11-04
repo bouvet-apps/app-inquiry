@@ -6,10 +6,7 @@ form:
       text: "Activate Inquiry App"
       i18n: "site.active"
     helpText:
-      text: "\n        Activate to display the inquiry box on your website. When a\
-        \ visitor closes the inquiry box or submits the inquiry form, their browser\
-        \ will remember this and prevent it from displaying again unless the identifier\
-        \ has changed in the meantime.\n      "
+      text: "Activate to display the inquiry box on your website. When a visitor closes the inquiry box or submits the inquiry form, their browser will remember this and prevent it from displaying again unless the identifier has changed in the meantime."
       i18n: "site.active-help"
     occurrences:
       min: 0
@@ -20,11 +17,7 @@ form:
       text: "Identifier"
       i18n: "site.identifier"
     helpText:
-      text: "\n        Enter some text and/or number to identify the current inquiry.\
-        \ All forms submitted\n        by visitors will be coupled to this identifier.\
-        \ When you want to create a new inquiry, change the identifier\n        to\
-        \ something new and unique. Please don't use any spaces or special characters\
-        \ other than \"-\".\n      "
+      text: "Enter some text and/or number to identify the current inquiry. All forms submitted by visitors will be coupled to this identifier. When you want to create a new inquiry, change the identifier to something new and unique. Please don't use any spaces or special characters other than \"-\"."
       i18n: "site.identifier-help"
     occurrences:
       min: 1
@@ -39,7 +32,7 @@ form:
       text: "Color theme"
       i18n: "site.theme"
     helpText:
-      text: "\n        Choose a styling theme for the inquiry form.\n      "
+      text: "Choose a styling theme for the inquiry form."
       i18n: "site.theme-help"
     occurrences:
       min: 1
@@ -73,9 +66,7 @@ form:
           text: "Title"
           i18n: "site.boxTitle"
         helpText:
-          text: "\n            Add a title to the initial inquiry box where a user\
-            \ can choose to proceed to the inquiry form. For example: Let us know\
-            \ what you think!\n          "
+          text: "Add a title to the initial inquiry box where a user can choose to proceed to the inquiry form. For example: Let us know what you think!"
           i18n: "site.boxTitle-help"
         occurrences:
           min: 0
@@ -86,8 +77,7 @@ form:
           text: "Text"
           i18n: "site.boxText"
         helpText:
-          text: "\n            Add a descriptive text to the inquiry box. It will\
-            \ be displayed below the title.\n          "
+          text: "Add a descriptive text to the inquiry box. It will be displayed below the title."
           i18n: "site.boxText-help"
         occurrences:
           min: 0
@@ -98,9 +88,7 @@ form:
           text: "Button text"
           i18n: "site.boxContinue"
         helpText:
-          text: "\n            This is the button a user will click if they want to\
-            \ continue to the inquiry form. Add a fitting text to the button.\n  \
-            \        "
+          text: "This is the button a user will click if they want to continue to the inquiry form. Add a fitting text to the button."
           i18n: "site.boxContinue-help"
         occurrences:
           min: 0
@@ -111,8 +99,7 @@ form:
           text: "Position of box on screen"
           i18n: "site.boxPosition"
         helpText:
-          text: "\n            Decide where on the webpage the info box should be\
-            \ displayed.\n          "
+          text: "Decide where on the webpage the info box should be displayed."
           i18n: "site.boxPosition-help"
         occurrences:
           min: 1
@@ -146,7 +133,7 @@ form:
           text: "Title"
           i18n: "site.popupTitle"
         helpText:
-          text: "\n            Add a title to the inquiry form.\n          "
+          text: "Add a title to the inquiry form."
           i18n: "site.popupTitle-help"
         occurrences:
           min: 0
@@ -157,8 +144,7 @@ form:
           text: "Text"
           i18n: "site.popupText"
         helpText:
-          text: "\n            Add a describing info text about the inquiry form.\
-            \ The text is displayed below the title.\n          "
+          text: "Add a describing info text about the inquiry form. The text is displayed below the title."
           i18n: "site.popupText-help"
         occurrences:
           min: 0
@@ -169,9 +155,7 @@ form:
           text: "Button text"
           i18n: "site.popupSubmit"
         helpText:
-          text: "\n            This is the button a user will click when they have\
-            \ completed the inquiry form and want to submit their reply. Add a fitting\
-            \ text to the button, for example: submit.\n          "
+          text: "This is the button a user will click when they have completed the inquiry form and want to submit their reply. Add a fitting text to the button, for example: submit."
           i18n: "site.popupSubmit-help"
         occurrences:
           min: 0
@@ -182,8 +166,7 @@ form:
           text: "Title after form submitted"
           i18n: "site.popupResponseTitle"
         helpText:
-          text: "\n            Add a title to display after the user has submitted\
-            \ their response. For example: Thank you for your reply.\n          "
+          text: "Add a title to display after the user has submitted their response. For example: Thank you for your reply."
           i18n: "site.popupResponseTitle-help"
         occurrences:
           min: 0
@@ -194,8 +177,7 @@ form:
           text: "Text after form submitted"
           i18n: "site.popupResponseText"
         helpText:
-          text: "\n            Add some text to display after the user has submitted\
-            \ their response.\n          "
+          text: "Add some text to display after the user has submitted their response."
           i18n: "site.popupResponseText-help"
         occurrences:
           min: 0
@@ -221,8 +203,7 @@ form:
                   text: "Question"
                   i18n: "site.question"
                 helpText:
-                  text: "\n                    Add a question that that requires a\
-                    \ short answer, no more than one line.\n                  "
+                  text: "Add a question that that requires a short answer, no more than one line."
                   i18n: "site.questionShort-help"
                 occurrences:
                   min: 1
@@ -233,9 +214,7 @@ form:
                   text: "Answer required"
                   i18n: "site.required"
                 helpText:
-                  text: "\n                    Checking this means that the user has\
-                    \ to answer the question. The inquiry form can not be submitted\
-                    \ before this question is answered.\n                  "
+                  text: "Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered."
                   i18n: "site.required-help"
                 occurrences:
                   min: 0
@@ -259,8 +238,7 @@ form:
                   text: "Question"
                   i18n: "site.question"
                 helpText:
-                  text: "\n                    Add a question that that requires a\
-                    \ longer answer, multiple lines.\n                  "
+                  text: "Add a question that that requires a longer answer, multiple lines."
                   i18n: "site.questionLong-help"
                 occurrences:
                   min: 1
@@ -271,9 +249,7 @@ form:
                   text: "Answer required"
                   i18n: "site.required"
                 helpText:
-                  text: "\n                    Checking this means that the user has\
-                    \ to answer the question. The inquiry form can not be submitted\
-                    \ before this question is answered.\n                  "
+                  text: "Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered."
                   i18n: "site.required-help"
                 occurrences:
                   min: 0
@@ -297,9 +273,7 @@ form:
                   text: "Question"
                   i18n: "site.question"
                 helpText:
-                  text: "\n                    Add a multiple choice question that\
-                    \ you want the user to answer. The user can select only one answer.\n\
-                    \                  "
+                  text: "Add a multiple choice question that you want the user to answer. The user can select only one answer."
                   i18n: "site.questionRadio-help"
                 occurrences:
                   min: 0
@@ -310,9 +284,7 @@ form:
                   text: "Answer required"
                   i18n: "site.required"
                 helpText:
-                  text: "\n                    Checking this means that the user has\
-                    \ to answer the question. The inquiry form can not be submitted\
-                    \ before this question is answered.\n                  "
+                  text: "Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered."
                   i18n: "site.required-help"
                 occurrences:
                   min: 0
@@ -353,9 +325,7 @@ form:
                   text: "Question"
                   i18n: "site.question"
                 helpText:
-                  text: "\n                    Add a multiple choice question that\
-                    \ you want the user to answer. The user can select multiple answers.\n\
-                    \                  "
+                  text: "Add a multiple choice question that you want the user to answer. The user can select multiple answers."
                   i18n: "site.questionCheckbox-help"
                 occurrences:
                   min: 0
@@ -366,9 +336,7 @@ form:
                   text: "Answer required"
                   i18n: "site.required"
                 helpText:
-                  text: "\n                    Checking this means that the user has\
-                    \ to answer the question. The inquiry form can not be submitted\
-                    \ before this question is answered.\n                  "
+                  text: "Checking this means that the user has to answer the question. The inquiry form can not be submitted before this question is answered."
                   i18n: "site.required-help"
                 occurrences:
                   min: 0
@@ -410,11 +378,7 @@ form:
           text: "Enable test mode"
           i18n: "site.testmode"
         helpText:
-          text: "\n            Enable if you want to always show the inquiry box on\
-            \ every page load, even if you have closed or submitted the inquiry before.\
-            \ Only works in preview/edit mode. When you're testing the form, don't\
-            \ forget to delete your test replies via the Inquiry admin tool before\
-            \ activating it on the master branch.\n          "
+          text: "Enable if you want to always show the inquiry box on every page load, even if you have closed or submitted the inquiry before. Only works in preview/edit mode. When you're testing the form, don't forget to delete your test replies via the Inquiry admin tool before activating it on the master branch."
           i18n: "site.testmode-help"
         occurrences:
           min: 0
@@ -425,9 +389,7 @@ form:
           text: "Base font-size (px)"
           i18n: "site.fontSize"
         helpText:
-          text: "\n            By default the font-size will be inherited from the\
-            \ body. Use this field to set a base font-size manually if needed (enter\
-            \ value between 1 and 30).\n          "
+          text: "By default the font-size will be inherited from the body. Use this field to set a base font-size manually if needed (enter value between 1 and 30)."
           i18n: "site.fontSize-help"
         occurrences:
           min: 0
@@ -440,10 +402,7 @@ form:
           text: "Z-index"
           i18n: "site.zindex.popup"
         helpText:
-          text: "\n            Manually set the z-index value here if you need to.\
-            \ By default a z-index value of 99999 will be used. Only use this field\
-            \ if you need to fix issues with other overlapping elements on your site.\
-            \ The element with highest z-index is displayed on top.\n          "
+          text: "Manually set the z-index value here if you need to. By default a z-index value of 99999 will be used. Only use this field if you need to fix issues with other overlapping elements on your site. The element with highest z-index is displayed on top."
           i18n: "site.zindex-help"
         occurrences:
           min: 0
@@ -455,10 +414,7 @@ form:
           text: "Z-index"
           i18n: "site.zindex.box"
         helpText:
-          text: "\n            Manually set the z-index value here if you need to.\
-            \ By default a z-index value of 99999 will be used. Only use this field\
-            \ if you need to fix issues with other overlapping elements on your site.\
-            \ The element with highest z-index is displayed on top.\n          "
+          text: "Manually set the z-index value here if you need to. By default a z-index value of 99999 will be used. Only use this field if you need to fix issues with other overlapping elements on your site. The element with highest z-index is displayed on top."
           i18n: "site.zindex-help"
         occurrences:
           min: 0
