@@ -1,0 +1,41 @@
+$color-text: #222;
+$color-border: #ddd;
+
+.inquiry-results {
+  display: block;
+  padding: 16px;
+  color: $color-text;
+  font: inherit;
+
+  h2 {
+    font-size: 18px;
+    margin: 0 0 16px;
+    overflow-wrap: anywhere;
+  }
+
+  h3 {
+    font-size: 14px;
+    margin: 24px 0 8px;
+    overflow-wrap: anywhere;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    padding: 8px 4px;
+    border-bottom: 1px solid $color-border;
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+
+    &:last-child {
+      width: 64px;
+      text-align: right;
+    }
+  }
+}

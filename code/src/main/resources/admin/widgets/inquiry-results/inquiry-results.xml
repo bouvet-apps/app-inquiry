@@ -1,0 +1,11 @@
+<widget>
+  <display-name i18n="widget.name">Inquiry results</display-name>
+  <description i18n="widget.description">Results for the selected inquiry</description>
+  <interfaces>
+    <interface>contentstudio.contextpanel</interface>
+  </interfaces>
+  <allow>
+    <principal>role:system.admin</principal>
+    <principal>role:inquiry.tool.admin</principal>
+  </allow>
+</widget>
