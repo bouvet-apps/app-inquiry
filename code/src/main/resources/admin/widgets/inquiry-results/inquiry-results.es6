@@ -33,9 +33,16 @@ exports.get = (req) => {
         questions = libs.util.forceArray(inquiry.questions).map((question) => {
           const config = question[question._selected];
           const answers = [];
+          let answerCount = 0;
 
           replies.forEach((reply) => {
-            libs.util.forceArray(reply.answers[config.id]).forEach((text) => {
+            const replyAnswers = libs.util.forceArray(reply.answers[config.id]);
+
+            if (replyAnswers.filter((text) => text !== null && typeof text !== "undefined" && text !== "").length > 0) {
+              answerCount += 1;
+            }
+
+            replyAnswers.forEach((text) => {
               const answer = answers.filter((item) => item.text === text)[0];
               if (answer) {
                 answer.count += 1;
@@ -48,6 +55,7 @@ exports.get = (req) => {
           answers.sort((first, second) => second.count - first.count);
           return {
             title: config.question,
+            answerCount: answerCount,
             answers: answers.map((answer) => ({
               text: libs.util.decodeHtml(answer.text, "script"),
               count: answer.count

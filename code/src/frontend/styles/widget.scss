@@ -13,10 +13,58 @@ $color-border: #ddd;
     overflow-wrap: anywhere;
   }
 
-  h3 {
-    font-size: 14px;
-    margin: 24px 0 8px;
+  .question {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    margin: 20px 8px;
+    padding: 5px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
     overflow-wrap: anywhere;
+
+    strong {
+      flex: 0 1 auto;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    &__count {
+      flex: 0 0 auto;
+      margin-left: 8px;
+      color: #666;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .arrow {
+      position: absolute;
+      left: -20px;
+      top: 5px;
+      padding: 0 5px;
+      font-weight: bold;
+      transform: rotate(0deg);
+      transition: transform ease 0.2s;
+    }
+
+    &.expanded .arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  .answers {
+    display: none;
+    max-height: 500px;
+    overflow: auto;
+
+    &.display {
+      display: block;
+    }
   }
 
   table {
