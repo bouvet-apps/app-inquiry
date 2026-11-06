@@ -1,0 +1,89 @@
+$color-text: #222;
+$color-border: #ddd;
+
+.inquiry-results {
+  display: block;
+  padding: 16px;
+  color: $color-text;
+  font: inherit;
+
+  h2 {
+    font-size: 18px;
+    margin: 0 0 16px;
+    overflow-wrap: anywhere;
+  }
+
+  .question {
+    position: relative;
+    display: flex;
+    align-items: baseline;
+    width: 100%;
+    margin: 20px 8px;
+    padding: 5px;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    overflow-wrap: anywhere;
+
+    strong {
+      flex: 0 1 auto;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    &__count {
+      flex: 0 0 auto;
+      margin-left: 8px;
+      color: #666;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .arrow {
+      position: absolute;
+      left: -20px;
+      top: 5px;
+      padding: 0 5px;
+      font-weight: bold;
+      transform: rotate(0deg);
+      transition: transform ease 0.2s;
+    }
+
+    &.expanded .arrow {
+      transform: rotate(90deg);
+    }
+  }
+
+  .answers {
+    display: none;
+    max-height: 500px;
+    overflow: auto;
+
+    &.display {
+      display: block;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+  }
+
+  th,
+  td {
+    padding: 8px 4px;
+    border-bottom: 1px solid $color-border;
+    text-align: left;
+    vertical-align: top;
+    overflow-wrap: anywhere;
+
+    &:last-child {
+      width: 64px;
+      text-align: right;
+    }
+  }
+}
