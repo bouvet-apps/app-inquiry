@@ -9,8 +9,13 @@ $color-border: #ddd;
 
   h2 {
     font-size: 18px;
-    margin: 0 0 16px;
+    margin-bottom: 16px;
     overflow-wrap: anywhere;
+  }
+
+  p.count,
+  a.go-to-tool {
+    margin-bottom: 16px;
   }
 
   .question {

@@ -2,7 +2,12 @@
   <link rel="stylesheet" href="${urlCss?html}">
   <#if title?has_content>
     <h2>${title?html}</h2>
-    <p><@localize locale="${locale}" key="tool.totalReplies" />: ${count?c}</p>
+  </#if>
+  <#if count?has_content>
+    <p class="count"><@localize locale="${locale}" key="tool.totalReplies" />: ${count?c}</p>
+  </#if>
+  <#if urlTool?has_content>
+    <a class="go-to-tool" href="${urlTool?html}" target="_blank" rel="noopener"><@localize locale="${locale}" key="widget.openTool" /></a>
   </#if>
   <#if count == 0>
     <p><@localize locale="${locale}" key="${message}" /></p>

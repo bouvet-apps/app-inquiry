@@ -69,6 +69,7 @@ exports.get = (req) => {
   const model = {
     locale: libs.admin.getLocale() ?? "en",
     urlCss: libs.portal.assetUrl({ path: "css/widget.css" }),
+    urlTool: libs.admin.getToolUrl(app.name, "inquiry"),
     title: title,
     count: count,
     questions: questions,
