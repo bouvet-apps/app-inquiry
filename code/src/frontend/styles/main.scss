@@ -143,6 +143,36 @@
         }
       }
     }
+
+    &--light-minimal {
+      background: #fff;
+      color: #190000;
+
+      .button {
+        margin: 30px 0 0;
+      }
+    }
+
+    &--dark-minimal {
+      background: #292a2d;
+      color: #fff;
+
+      .inquiry-box {
+        &__close {
+          color: #fff;
+          transition: color ease 0.2s;
+
+          &:hover,
+          &:focus-visible {
+            color: #bbb;
+          }
+        }
+      }
+
+      .button {
+        margin: 30px 0 0;
+      }
+    }
   }
 
   &-popupmodal {
@@ -387,6 +417,36 @@
             }
           }
         }
+      }
+    }
+
+    &--light-minimal {
+      background: #fff;
+      color: #190000;
+
+      .button {
+        margin: 30px 0 0;
+      }
+    }
+
+    &--dark-minimal {
+      background: #292a2d;
+      color: #fff;
+
+      .inquiry-popup {
+        &__close {
+          color: #fff;
+          transition: color ease 0.2s;
+
+          &:hover,
+          &:focus-visible {
+            color: #bbb;
+          }
+        }
+      }
+
+      .button {
+        margin: 30px 0 0;
       }
     }
   }
