@@ -120,6 +120,10 @@ exports.get = (req) => {
         type: "list",
         height: 400,
         title: question[question._selected].question,
+        answerCount: allAnswers.filter((answer) => {
+          const answerValues = libs.util.forceArray(answer[question[question._selected].id]);
+          return answerValues.filter((value) => value !== null && typeof value !== "undefined" && value !== "").length > 0;
+        }).length,
         answers: []
       };
 
