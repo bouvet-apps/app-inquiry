@@ -1,5 +1,6 @@
 const libs = {
   portal: require("/lib/xp/portal"),
+  content: require("/lib/xp/content"),
   context: require("/lib/xp/context"),
   freemarker: require("/lib/tineikt/freemarker"),
   util: require("/lib/util"),
@@ -7,18 +8,60 @@ const libs = {
 };
 
 exports.responseProcessor = (req, res) => {
-  const config = libs.portal.getSiteConfig();
-  const cookieIdentifier = req.cookies?.inquiryIdentifier;
-  const testmode = config.testmode && libs.context.get().branch === "draft";
+  const site = libs.portal.getSite();
+  const page = libs.portal.getContent();
+  if (!site || !page) {
+    return res;
+  }
 
-  // If visitor has already closed/submitted the currently active inquiry then don't display the inquiry again, unless testmode is on.
-  if (config.active && config.identifier && (config.identifier !== cookieIdentifier || testmode)) {
-    const style = `<link rel="stylesheet" href="${libs.portal.assetUrl({ path: "css/main.css" })}">`;
-    const scripts = `<script src="${libs.portal.assetUrl({ path: "js/main.js" })}" async></script>`;
+  const inquiries = libs.content.query({
+    count: -1,
+    contentTypes: [`${app.name}:inquiry`],
+    query: {
+      boolean: {
+        must: [
+          { pathMatch: { field: "_path", path: `/content${site._path}`, minimumMatch: 1 } },
+          { term: { field: "data.active", value: true } }
+        ]
+      }
+    },
+    sort: "_path ASC"
+  }).hits;
+  const matchingInquiries = [];
+  for (let index = 0; index < inquiries.length; index += 1) {
+    const item = inquiries[index];
+    const inquirySite = libs.content.getSite({ key: item._id });
+    const targeting = item.data.targeting;
+    const matchesPage = targeting?._selected === "allPages"
+      || (targeting?._selected === "specificPages" && libs.util.forceArray(targeting.specificPages?.pages).indexOf(page._id) !== -1);
+    const isTestmode = item.data.testmode && libs.context.get().branch === "draft";
+    if (inquirySite?._id === site._id && matchesPage
+      && (!req.cookies?.[`inquiry-${item._id}`] || isTestmode)) {
+      matchingInquiries.push(item);
+    }
+  }
+  matchingInquiries.sort((first, second) => Number(second.data.targeting?._selected === "allPages")
+    - Number(first.data.targeting?._selected === "allPages"));
+  if (matchingInquiries.length === 0) {
+    return res;
+  }
+
+  // Check if contribution fields exists, if not create them
+  if (!res.pageContributions.bodyEnd) {
+    res.pageContributions.bodyEnd = [];
+  }
+  if (!res.pageContributions.headEnd) {
+    res.pageContributions.headEnd = [];
+  }
+
+  for (let index = 0; index < matchingInquiries.length; index += 1) {
+    const inquiry = matchingInquiries[index];
+    const config = inquiry.data;
+    const testmode = config.testmode && libs.context.get().branch === "draft";
 
     // Create body html
     const model = {};
-    model.identifier = config.identifier;
+    model.identifier = inquiry._id;
     model.testmode = testmode;
     model.theme = config.theme ? config.theme : "light";
     model.fontSize = config.fontSize ? config.fontSize.toString() : "";
@@ -43,26 +86,18 @@ exports.responseProcessor = (req, res) => {
     model.inquiryServiceUrl = libs.portal.serviceUrl({ service: "inquiry" });
     model.titleClose = libs.i18n.localize({ key: "close" });
     model.submitError = libs.i18n.localize({ key: "submiterror" });
+    model.checkboxRequired = libs.i18n.localize({ key: "site.checkbox-required" });
 
     const view = resolve("/views/inquiry.ftl");
     const body = libs.freemarker.render(view, model);
-
-    // Check if contribution fields exists, if not create it
-    const bodyEnd = res.pageContributions.bodyEnd;
-    if (!bodyEnd) {
-      res.pageContributions.bodyEnd = [];
-    }
-
-    const headEnd = res.pageContributions.headEnd;
-    if (!headEnd) {
-      res.pageContributions.headEnd = [];
-    }
-
-    // Add contributions
     res.pageContributions.bodyEnd.push(body);
-    res.pageContributions.bodyEnd.push(scripts);
-    res.pageContributions.headEnd.push(style);
   }
+
+  // Add shared assets once for all matching inquiries
+  const style = `<link rel="stylesheet" href="${libs.portal.assetUrl({ path: "css/main.css" })}">`;
+  const scripts = `<script src="${libs.portal.assetUrl({ path: "js/main.js" })}" async></script>`;
+  res.pageContributions.bodyEnd.push(scripts);
+  res.pageContributions.headEnd.push(style);
 
   return res;
 };

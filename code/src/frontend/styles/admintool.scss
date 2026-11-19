@@ -222,10 +222,24 @@ button {
 
   .question {
     position: relative;
-    display: inline-block;
+    display: flex;
+    align-items: baseline;
+    width: 100%;
     font-size: 14px;
     color: $color-dark;
     background-color: $color-light;
+
+    strong {
+      flex: 0 1 auto;
+      min-width: 0;
+      overflow-wrap: anywhere;
+    }
+
+    &__count {
+      flex: 0 0 auto;
+      margin-left: 8px;
+      white-space: nowrap;
+    }
 
     .arrow {
       position: absolute;
