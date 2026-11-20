@@ -136,6 +136,7 @@
                 <button id="question${chartItem?counter}" class="question expanded" onclick="toggleExpand(${chartItem?counter})" title="<@localize locale="${locale}" key="tool.toggleTitle" />">
                   <div class="arrow">></div>
                   <strong>${chartItem.title}</strong>
+                  <span class="question__count">(${chartItem.answerCount?c} <@localize locale="${locale}" key="tool.replies" />)</span>
                 </button>
                 <div id="answers${chartItem?counter}" class="answers display">
                   <div id="chart${chartItem?counter}" class="chart" style="height:${chartItem.height}px;"></div>
@@ -145,6 +146,7 @@
               <button id="question${chartItem?counter}" class="question expanded" onclick="toggleExpand(${chartItem?counter})" title="<@localize locale="${locale}" key="tool.toggleTitle" />">
                 <div class="arrow">></div>
                 <strong>${chartItem.title}</strong>
+                <span class="question__count">(${chartItem.answerCount?c} <@localize locale="${locale}" key="tool.replies" />)</span>
               </button>
               <div id="answers${chartItem?counter}" class="answers display">
                 <#if (chartItem.answers?size == 0)>

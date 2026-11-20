@@ -8,8 +8,8 @@ const resourceFolder = "../../build/resources/main/assets/";
 module.exports = {
   entry: {
     main: "./scripts/main.es6",
-    vendor: "./scripts/vendor.es6",
-    admintool: ['./styles/admintool.scss']
+    admintool: ["./styles/admintool.scss"],
+    widget: ["./styles/widget.scss"]
   },
   plugins: [
     new MiniCssExtractPlugin({
@@ -17,7 +17,7 @@ module.exports = {
     }),
     new StylelintPlugin({
       context: "./styles/"
-    }),
+    })
   ],
   module: {
     rules: [

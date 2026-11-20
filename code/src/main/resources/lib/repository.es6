@@ -1,5 +1,4 @@
 const libs = {
-  context: require("/lib/xp/context"),
   node: require("/lib/xp/node"),
   repo: require("/lib/xp/repo"),
   util: require("/lib/util")
@@ -17,10 +16,6 @@ const {
     NAME
   }
 } = require("/lib/enums");
-
-exports.runAsAdmin = (callback) => libs.context.run({
-  principals: ["role:system.admin"]
-}, callback);
 
 exports.checkRepo = () => {
   // Check if there is already a repo and parent path, if not create them
@@ -58,7 +53,7 @@ exports.checkRepo = () => {
   return true;
 };
 
-exports.saveInquiry = (identifier, questions) => {
+exports.saveInquiry = (identifier, displayName, questions) => {
   const repoConn = libs.node.connect({
     repoId: INQUIRY,
     branch: MASTER
@@ -69,14 +64,16 @@ exports.saveInquiry = (identifier, questions) => {
     return repoConn.create({
       _parentPath: PATH,
       _name: identifier,
+      displayName: displayName,
       questions: questions
     });
   }
 
   return repoConn.modify({
     key: `${PATH}/${identifier}`,
-    editor: function (x) {
+    editor: function(x) {
       const editNode = x;
+      editNode.displayName = displayName;
       editNode.questions = questions;
       return editNode;
     }
@@ -189,7 +186,7 @@ exports.generateTestInquiry = (inquiryToCopy, inquiryName, totalReplies) => {
   const identifier = `${inquiryName}-test`;
   const questions = libs.util.forceArray(inquiryToCopy.questions);
 
-  exports.saveInquiry(identifier, questions);
+  exports.saveInquiry(identifier, inquiryName, questions);
 
   const randomTextArray = [
     "A hamster playing the piano? ",
