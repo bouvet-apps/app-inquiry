@@ -9,9 +9,13 @@ You can install the app from the [Enonic Market](https://market.enonic.com) and 
 
 ### Build it yourself
 
+This branch targets Enonic XP 8.1.3 and requires Java 25 to build.
+
 If you wish to build it yourself, you can run the `make package` command in the main directory to build and package the application. This will create a JAR file in the `/deploy` folder which you can use to install the app.
 
 ## Notes
+
+Select an Inquiry in Content Studio and open **Inquiry results** in the context panel to view its responses. This panel is an XP 8 admin extension and requires either the system administrator role or the Inquiry App administrator role. It also links to the full admin tool.
 
 Each inquiry is configured as its own content item. Activate it, choose **All pages** or **Specific pages**, and publish it to display it on the live site. Specific page selections apply only to those pages, not their descendants. Inquiries are restricted to the site they belong to.
 

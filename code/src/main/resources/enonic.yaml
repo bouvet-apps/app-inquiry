@@ -1,0 +1,5 @@
+kind: "Application"
+title: "Inquiry App"
+description: "Create inquiries and visualize the data"
+vendorName: "Bouvet Norge AS"
+vendorUrl: "http://www.bouvet.no"

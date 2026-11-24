@@ -20,17 +20,18 @@ if (repoCheck) {
 }
 
 const handleInquiryNodeEvent = (event) => {
-  if (event.data.nodes[0]) {
+  const node = event.data.nodes[0];
+  if (node && node.repo.indexOf("com.enonic.cms.") === 0 && node.branch === "draft") {
     libs.context.run({
-      branch: "draft",
-      repository: event.data.nodes[0].repo,
+      branch: node.branch,
+      repository: node.repo,
       principals: ["role:system.admin"]
     }, () => {
-      const nodeInfo = libs.content.get({ key: event.data.nodes[0].id });
+      const nodeInfo = libs.content.get({ key: node.id });
       if (nodeInfo && nodeInfo.type === `${app.name}:inquiry`
         && libs.util.forceArray(nodeInfo.data.popupQuestions).some((question) => question[question._selected] && !question[question._selected].id)) {
         libs.content.modify({
-          key: event.data.nodes[0].id,
+          key: node.id,
           requireValid: false,
           editor: (c) => {
             const _c = c;

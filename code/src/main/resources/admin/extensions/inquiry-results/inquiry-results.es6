@@ -2,14 +2,23 @@ const libs = {
   admin: require("/lib/xp/admin"),
   content: require("/lib/xp/content"),
   context: require("/lib/xp/context"),
-  freemarker: require("/lib/tineikt/freemarker"),
-  portal: require("/lib/xp/portal"),
+  freemarker: require("/lib/freemarker"),
+  static: require("/lib/enonic/static"),
   repository: require("/lib/repository"),
   util: require("/lib/util"),
   enums: require("/lib/enums")
 };
 
 exports.get = (req) => {
+  const urlCss = `${req.contextPath}/_static/widget.css`;
+  if (req.path === urlCss) {
+    return libs.static.requestHandler(req, {
+      root: "/assets/css",
+      relativePath: () => "widget.css",
+      index: false
+    });
+  }
+
   const contentId = req?.params?.contentId;
   const repository = req?.params?.repository;
   const branch = req?.params?.branch;
@@ -67,8 +76,7 @@ exports.get = (req) => {
   }
 
   const model = {
-    locale: libs.admin.getLocale() ?? "en",
-    urlCss: libs.portal.assetUrl({ path: "css/widget.css" }),
+    urlCss: urlCss,
     urlTool: libs.admin.getToolUrl(app.name, "inquiry"),
     title: title,
     count: count,

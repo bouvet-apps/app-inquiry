@@ -2,7 +2,7 @@ const libs = {
   portal: require("/lib/xp/portal"),
   content: require("/lib/xp/content"),
   context: require("/lib/xp/context"),
-  freemarker: require("/lib/tineikt/freemarker"),
+  freemarker: require("/lib/freemarker"),
   util: require("/lib/util"),
   i18n: require("/lib/xp/i18n")
 };
@@ -34,7 +34,7 @@ exports.responseProcessor = (req, res) => {
     const targeting = item.data.targeting;
     const matchesPage = targeting?._selected === "allPages"
       || (targeting?._selected === "specificPages" && libs.util.forceArray(targeting.specificPages?.pages).indexOf(page._id) !== -1);
-    const isTestmode = item.data.testmode && libs.context.get().branch === "draft";
+    const isTestmode = item.data.testmode === true && libs.context.get().branch === "draft";
     if (inquirySite?._id === site._id && matchesPage
       && (!req.cookies?.[`inquiry-${item._id}`] || isTestmode)) {
       matchingInquiries.push(item);
@@ -57,7 +57,7 @@ exports.responseProcessor = (req, res) => {
   for (let index = 0; index < matchingInquiries.length; index += 1) {
     const inquiry = matchingInquiries[index];
     const config = inquiry.data;
-    const testmode = config.testmode && libs.context.get().branch === "draft";
+    const testmode = config.testmode === true && libs.context.get().branch === "draft";
 
     // Create body html
     const model = {};
