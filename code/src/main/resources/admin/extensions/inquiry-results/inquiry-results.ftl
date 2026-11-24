@@ -4,16 +4,16 @@
     <h2>${title?html}</h2>
   </#if>
   <#if count?has_content>
-    <p class="count"><@localize locale="${locale}" key="tool.totalReplies" />: ${count?c}</p>
+    <p class="count">${portal.localize("tool.totalReplies")}: ${count?c}</p>
   </#if>
   <#if urlTool?has_content>
-    <a class="go-to-tool" href="${urlTool?html}" target="_blank" rel="noopener"><@localize locale="${locale}" key="widget.openTool" /></a>
+    <a class="go-to-tool" href="${urlTool?html}" target="_blank" rel="noopener">${portal.localize("widget.openTool")}</a>
   </#if>
   <#if count == 0>
-    <p><@localize locale="${locale}" key="${message}" /></p>
+    <p>${portal.localize(message)}</p>
   <#else>
     <#list questions as question>
-      <button id="question${question?counter}" class="question expanded" aria-controls="answers${question?counter}" aria-expanded="true" onclick="toggleInquiryAnswers(${question?counter})" title="<@localize locale="${locale}" key="tool.toggleTitle" />">
+      <button id="question${question?counter}" class="question expanded" aria-controls="answers${question?counter}" aria-expanded="true" onclick="toggleInquiryAnswers(${question?counter})" title="${portal.localize("tool.toggleTitle")}">
         <span class="arrow">&gt;</span>
         <strong>${question.title?html}</strong>
         <span class="question__count">(${question.answerCount?c})</span>
@@ -23,8 +23,8 @@
           <table>
             <thead>
               <tr>
-                <th scope="col"><@localize locale="${locale}" key="tool.answer" /></th>
-                <th scope="col"><@localize locale="${locale}" key="tool.count" /></th>
+                <th scope="col">${portal.localize("tool.answer")}</th>
+                <th scope="col">${portal.localize("tool.count")}</th>
               </tr>
             </thead>
             <tbody>
@@ -34,7 +34,7 @@
             </tbody>
           </table>
         <#else>
-          <p><@localize locale="${locale}" key="tool.noData" /></p>
+          <p>${portal.localize("tool.noData")}</p>
         </#if>
       </div>
     </#list>

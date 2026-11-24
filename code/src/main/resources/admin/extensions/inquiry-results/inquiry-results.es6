@@ -76,7 +76,6 @@ exports.get = (req) => {
   }
 
   const model = {
-    locale: libs.admin.getLocale() ?? "en",
     urlCss: urlCss,
     urlTool: libs.admin.getToolUrl(app.name, "inquiry"),
     title: title,
