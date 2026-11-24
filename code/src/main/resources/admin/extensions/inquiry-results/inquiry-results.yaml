@@ -1,0 +1,12 @@
+kind: "AdminExtension"
+title:
+  text: "Inquiry results"
+  i18n: "widget.name"
+description:
+  text: "Results for the selected inquiry"
+  i18n: "widget.description"
+allow:
+  - "role:system.admin"
+  - "role:inquiry.tool.admin"
+interfaces:
+  - "contentstudio.contextpanel"

@@ -27,7 +27,7 @@ To test if you have already set this up, run `ssh -T git@github.com`.
 If you receive "permission denied" here, you need to set up a connection.
 To do this you can follow githubs own guide: https://docs.github.com/en/authentication/connecting-to-github-with-ssh .
 
-Make sure to use Java version 11. Check by running `java -version`. Use `sdkman` to adjust if necessary.
+This branch targets Enonic XP 8.1.3. Make sure to use Java version 25. Check by running `java -version`. Use `sdkman` to adjust if necessary.
 
 Enonic CLI (Command Line Interface) needs to be installed. See
 [documentation for Enonic CLI](https://developer.enonic.com/docs/enonic-cli/master/install) for details.

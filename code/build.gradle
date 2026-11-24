@@ -163,6 +163,7 @@ dependencies {
     include xplibs.node
     include xplibs.event
     include "no.item:lib-xp-freemarker:4.0.0"
+    include "com.enonic.lib:lib-static:3.0.0"
 }
 
 repositories {
